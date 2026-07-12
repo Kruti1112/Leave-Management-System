@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const Employee = require("./models/Employee");
+const Leave = require("./models/Leaves");
 
 const app = express();
 
@@ -89,6 +90,21 @@ app.post("/adminLogin", async(req, res) =>{
             success: false,
             error: err.message
         });
+    }
+});
+
+//Get employee details by email
+app.get("/employee/:email", async (req, res) => {
+    try {
+        const employee = await Employee.findOne({ email: req.params.email });
+        if (employee) {
+            res.json(employee);
+        } else {
+            res.status(404).json({ message: "Employee not found" });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: err.message });
     }
 });
 

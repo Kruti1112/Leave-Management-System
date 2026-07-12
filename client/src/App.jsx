@@ -94,7 +94,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
-        <Route path="/employeedashboard" element={<EmployeeDashboard />} />
+        <Route path="/dashboard" element={<EmployeeDashboard />} />
 
       </Routes>
     </BrowserRouter>

@@ -37,6 +37,7 @@ function Login() {
         })
         .then((response) => {
             if (response.data.success) {
+                sessionStorage.setItem("email", email);
                 alert(response.data.message || "Login Successful");
                 navigate("/dashboard");
             } else {
