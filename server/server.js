@@ -92,6 +92,31 @@ app.post("/adminLogin", async(req, res) =>{
     }
 });
 
+//Applied Leaves
+app.get("/appliedleave/:email",async(req,res)=>{
+    const total=await Leave.countDocuments({
+        email:req.params.email
+    });
+    res.send(total.toString());
+});
+
+//Pending Leaves
+app.get("/pendingleave/:email",async(req,res)=>{
+    const total=await Leave.countDocuments({
+        email:req.params.email,
+        status:"Pending"
+    });
+    res.send(total.toString());
+});
+
+//Leave List
+app.get("/leavehistory/:email",async(req,res)=>{
+    const leaves=await Leave.find({
+        email:req.params.email
+    });
+    res.send(leaves);
+});
+
 app.listen(5000, () => {
     console.log(`Server Running on Port 5000`);
 });

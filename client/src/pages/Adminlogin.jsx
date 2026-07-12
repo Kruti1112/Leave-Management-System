@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Adminlogin.css";
 
@@ -6,6 +7,7 @@ function AdminLogin() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function adminLogin() {
         if (email === "") {
@@ -31,6 +33,7 @@ function AdminLogin() {
         .then((response) => {
             if (response.data.success) {
                 alert(response.data.message || "Admin Login Successful");
+                navigate("/dashboard");
             } else {
                 alert(response.data.message || "Invalid Email, Phone number or Password");
             }

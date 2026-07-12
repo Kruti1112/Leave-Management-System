@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2f2f2;
+}
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    background:#1565c0;
+    color:white;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:15px;
+    margin-bottom:10px;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.sidebar ul li:hover{
+    background:#0d47a1;
+}
+
+/* Main */
+
+.main{
+    flex:1;
+    padding:25px;
+}
+
+/* Welcome Box */
+
+.welcome{
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    margin-bottom:20px;
+    box-shadow:0 0 5px gray;
+}
+
+.welcome h1{
+    color:#1565c0;
+    margin-bottom:10px;
+}
+
+.welcome h2{
+    margin-bottom:10px;
+}
+
+/* Cards */
+
+.cards{
+    display:flex;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.card{
+    flex:1;
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:8px;
+    box-shadow:0 0 5px gray;
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#555;
+}
+
+.card h1{
+    color:#1565c0;
+}
+
+/* Buttons */
+
+.buttons{
+    margin-bottom:20px;
+}
+
+.buttons button{
+    padding:10px 20px;
+    margin-right:10px;
+    background:#1565c0;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.buttons button:hover{
+    background:#0d47a1;
+}
+
+/* Table */
+
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    box-shadow:0 0 5px gray;
+}
+
+table th{
+    background:#1565c0;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #ddd;
+}

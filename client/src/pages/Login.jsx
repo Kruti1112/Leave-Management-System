@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/Login.css";
 
@@ -6,6 +7,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function login() {
         if (email === "") {
@@ -36,6 +38,7 @@ function Login() {
         .then((response) => {
             if (response.data.success) {
                 alert(response.data.message || "Login Successful");
+                navigate("/dashboard");
             } else {
                 alert(response.data.message || "Invalid Email, Phone number or Password");
             }

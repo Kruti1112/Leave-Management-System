@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AdminLogin from "./pages/Adminlogin";
+import EmployeeDashboard from "./pages/EmployeeDashboard";
 
 function App() {
   return (
@@ -93,6 +94,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/employeedashboard" element={<EmployeeDashboard />} />
 
       </Routes>
     </BrowserRouter>
