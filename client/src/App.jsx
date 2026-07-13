@@ -40,7 +40,7 @@ function App() {
                 border: "1px solid #dbeafe",
                 textAlign: "center"
               }}>
-                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Employee Section</h2>
+                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Employee Portal</h2>
                 <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                   See and manage your leave requests in one place.
                 </p>
@@ -71,7 +71,7 @@ function App() {
                 border: "1px solid #dbeafe",
                 textAlign: "center"
               }}>
-                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Admin Section</h2>
+                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Admin Portal</h2>
                 <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                   Manage employee leave requests efficiently.
                 </p>
