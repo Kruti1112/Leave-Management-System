@@ -2,82 +2,80 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+    font-family:Arial, sans-serif;
 }
 
 body{
-    background:#ffffff;
+    background:#f4f6f9;
 }
 
 .adminlogin-container{
-    width:min(88vw, 360px);
-    background:#fff;
-    margin:24px auto;
-    padding:22px 20px;
-    border-radius:14px;
-    box-shadow:0 8px 22px rgba(15, 23, 42, 0.10);
+    width:400px;
+    background:white;
+    margin:80px auto;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 0 10px lightgray;
 }
 
 .adminlogin-container h1{
     text-align:center;
-    font-size:20px;
-    margin-bottom:16px;
-    color:#1f2937;
+    color:#1565c0;
+    margin-bottom:30px;
 }
 
 .form-group{
-    margin-bottom:10px;
+    margin-bottom:20px;
 }
 
 .form-group label{
     display:block;
-    text-align:left;
-    font-size:12px;
-    font-weight:600;
-    margin-bottom:6px;
-    color:#374151;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#333;
 }
 
 .form-group input{
     width:100%;
-    padding:10px 11px;
-    font-size:13px;
-    border:1px solid #d1d5db;
-    border-radius:8px;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size:15px;
     outline:none;
-    transition: border-color 0.2s ease;
 }
 
 .form-group input:focus{
-    border-color:#2563eb;
+    border:2px solid #1565c0;
 }
 
 button{
     width:100%;
-    padding:10px;
-    background:#2563eb;
+    padding:12px;
+    background:#1565c0;
     color:white;
     border:none;
-    border-radius:8px;
-    font-size:13px;
+    border-radius:5px;
+    font-size:16px;
     cursor:pointer;
-    margin-top:10px;
-    font-weight:600;
+    transition:0.3s;
 }
 
 button:hover{
-    background:#1d4ed8;
+    background:#0d47a1;
 }
 
 .adminlogin-container p{
     text-align:center;
-    margin-top:14px;
-    font-size:13px;
-    color:#4b5563;
+    margin-top:20px;
+    color:#555;
 }
 
 .adminlogin-container a{
-    color:#2563eb;
+    color:#1565c0;
     text-decoration:none;
-    font-weight:600;
+    font-weight:bold;
+}
+
+.adminlogin-container a:hover{
+    text-decoration:underline;
 }

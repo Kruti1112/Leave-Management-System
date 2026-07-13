@@ -66,29 +66,86 @@ app.post("/login", async (req, res) => {
 });
 
 //Admin api
-app.post("/adminLogin", async(req, res) =>{
+app.post("/adminLogin", (req, res) => {
+    console.log("Admin Login Attempt:", req.body);
+    const adminEmail = "kruti@gmail.com";
+    const adminPassword = "123456789" ;
+
+    if (
+        req.body.email === adminEmail &&
+        req.body.password === adminPassword
+    ) {
+        console.log("Admin Login Successful for:", adminEmail);
+        res.json({
+            success: true,
+            message: "Admin Login Successful"
+        });
+
+    } else {
+        console.log("Admin Login Failed for:", req.body.email);
+        res.json({
+            success: false,
+            message: "Invalid Email or Password"
+        });
+
+    }
+
+});
+
+// Admin stats api
+app.get("/admin/stats", async (req, res) => {
     try {
-        const adminEmail = "kruti11@gmail.com";
-        const adminPassword = "K@uti1112";
-        const enteredEmail = req.body.email || "";
+        const totalEmployees = await Employee.countDocuments({});
+        const totalLeaves = await Leave.countDocuments({});
+        const pendingLeaves = await Leave.countDocuments({ status: "Pending" });
+        const approvedLeaves = await Leave.countDocuments({ status: "Approved" });
 
-        if (enteredEmail.toLowerCase() === adminEmail.toLowerCase() && req.body.password === adminPassword) {
-            return res.json({
-                success: true,
-                message: "Admin Login Successful"
-            });
+        res.json({
+            totalEmployees,
+            totalLeaves,
+            pendingLeaves,
+            approvedLeaves
+        });
+    } catch (error) {
+        console.error("Error fetching admin stats:", error);
+        res.status(500).json({ error: "Failed to fetch stats" });
+    }
+});
+
+// Admin leaves api
+app.get("/admin/leaves", async (req, res) => {
+    try {
+        const leaves = await Leave.find({});
+        res.json(leaves);
+    } catch (error) {
+        console.error("Error fetching admin leaves:", error);
+        res.status(500).json({ error: "Failed to fetch leaves" });
+    }
+});
+
+// Admin update leave status api
+app.put("/admin/leaves/:id", async (req, res) => {
+    try {
+        const { status } = req.body;
+        if (!["Approved", "Rejected"].includes(status)) {
+            return res.status(400).json({ error: "Invalid status value" });
         }
-
-        return res.json({
-            success: false,
-            message: "Invalid Email, Phone number or Password"
+        const updatedLeave = await Leave.findByIdAndUpdate(
+            req.params.id,
+            { status },
+            { new: true }
+        );
+        if (!updatedLeave) {
+            return res.status(404).json({ error: "Leave request not found" });
+        }
+        res.json({
+            success: true,
+            message: `Leave status updated to ${status}`,
+            leave: updatedLeave
         });
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            error: err.message
-        });
+    } catch (error) {
+        console.error("Error updating leave status:", error);
+        res.status(500).json({ error: "Failed to update leave status" });
     }
 });
 
