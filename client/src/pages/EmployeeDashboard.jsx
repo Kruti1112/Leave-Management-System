@@ -58,7 +58,7 @@ function EmployeeDashboard() {
             <div className="main">
                 {/* Welcome Section */}
                 <div className="welcome">
-                    <h1>Welcome Back!!</h1>
+                    <h1>Welcome Back!</h1>
                     <h2>{employee.name}</h2>
                     <p>Employee ID : {employee._id}</p>
                     <p>Email : {employee.email}</p>
