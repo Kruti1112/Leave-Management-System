@@ -3,6 +3,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import AdminLogin from "./pages/Adminlogin";
 import EmployeeDashboard from "./pages/EmployeeDashboard";
+import ApplyLeave from "./pages/ApplyLeave";
+import LeaveHistory from "./pages/Leavehistory";
+
 
 function App() {
   return (
@@ -95,6 +98,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/dashboard" element={<EmployeeDashboard />} />
+        <Route path="/applyleave" element={<ApplyLeave />} />
+        <Route path="/leavehistory" element={<LeaveHistory/>} />
+
 
       </Routes>
     </BrowserRouter>

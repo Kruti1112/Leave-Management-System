@@ -4,8 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const Employee = require("./models/Employee");
-const Leave = require("./models/Leaves");
-
+const Leave = require("./models/Leave");
 const app = express();
 
 connectDB();
@@ -108,14 +107,6 @@ app.get("/employee/:email", async (req, res) => {
     }
 });
 
-//Applied Leaves
-app.get("/appliedleave/:email",async(req,res)=>{
-    const total=await Leave.countDocuments({
-        email:req.params.email
-    });
-    res.send(total.toString());
-});
-
 //Pending Leaves
 app.get("/pendingleave/:email",async(req,res)=>{
     const total=await Leave.countDocuments({
@@ -125,12 +116,34 @@ app.get("/pendingleave/:email",async(req,res)=>{
     res.send(total.toString());
 });
 
-//Leave List
-app.get("/leavehistory/:email",async(req,res)=>{
-    const leaves=await Leave.find({
-        email:req.params.email
+//Leave history
+app.get("/leavehistory/:email", async (req, res) => {
+    const leaves = await Leave.find({
+        email: req.params.email
     });
     res.send(leaves);
+});
+
+//Aplly leave api
+app.post("/applyleave", async (req, res) => {
+    try {
+        const leave = new Leave({
+            employeeId: req.body.employeeId,
+            employeeName: req.body.employeeName,
+            email: req.body.email,
+            leaveType: req.body.leaveType,
+            fromDate: req.body.fromDate,
+            toDate: req.body.toDate,
+            reason: req.body.reason,
+            status: "Pending"
+
+        });
+        await leave.save();
+        res.send("Leave Applied Successfully");
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Error Applying Leave");
+    }
 });
 
 app.listen(5000, () => {

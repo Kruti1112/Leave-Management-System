@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'poppins', sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    width:220px;
+    background:#1565c0;
+    color:white;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.sidebar ul li:hover{
+    background:#0d47a1;
+}
+
+/* Main */
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+/* Leave Form */
+
+.leave-box{
+    width:550px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0px 0px 10px lightgray;
+}
+
+.leave-box h1{
+    text-align:center;
+    color:#1565c0;
+    margin-bottom:25px;
+}
+
+.leave-box label{
+    display:block;
+    font-weight:bold;
+    margin-top:15px;
+    margin-bottom:5px;
+}
+
+.leave-box input,
+.leave-box select,
+.leave-box textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    outline:none;
+    font-size:15px;
+}
+
+.leave-box input:focus,
+.leave-box select:focus,
+.leave-box textarea:focus{
+    border:1px solid #1565c0;
+}
+
+.leave-box textarea{
+    resize:none;
+}
+
+.leave-box button{
+    width:100%;
+    margin-top:25px;
+    padding:12px;
+    background:#1565c0;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.leave-box button:hover{
+    background:#0d47a1;
+}

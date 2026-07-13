@@ -39,15 +39,18 @@ function EmployeeDashboard() {
         <div className="dashboard">
             {/* Sidebar */}
             <div className="sidebar">
-                <h2>LeaveMS</h2>
+                <h2>Leave Management System</h2>
+                
                 <ul>
                     <li>Dashboard</li>
-                    <li>Apply Leave</li>
-                    <li>Leave History</li>
-                    <li>Profile</li>
-                    <li><button onClick={() => window.location = "/login"}>
+                    <li onClick={() => window.location = "/applyleave"}>
+                        Apply Leave
+                    </li>
+                    <li onClick={() => window.location = "/leavehistory"}>
+                        Leave History   
+                    </li>
+                    <li onClick={() => window.location = "/login"}>
                         Logout
-                        </button>
                     </li>
                 </ul>
             </div>
@@ -60,7 +63,7 @@ function EmployeeDashboard() {
                     <p>Employee ID : {employee._id}</p>
                     <p>Email : {employee.email}</p>
                 </div>
-                {/* Dashboard Cards */}
+                {/* Leave Cards */}
                 <div className="cards">
                     <div className="card">
                         <h3>Total Leaves</h3>
@@ -80,32 +83,9 @@ function EmployeeDashboard() {
                     <button onClick={()=>window.location="/applyleave"}>
                         Apply Leave
                     </button>
-                    <button>Leave History</button>
+                    <button onClick={()=>window.location="/leavehistory"}>Leave History</button>
                 </div>
-                {/* Leave History */}
-                <h2>Recent Leave History</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Leave Type</th>
-                            <th>From Date</th>
-                            <th>To Date</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                        leaveList.map((leave) => (
-                            <tr key={leave._id}>
-                                <td>{leave.leaveType}</td>
-                                <td>{leave.fromDate}</td>
-                                <td>{leave.toDate}</td>
-                                <td>{leave.status}</td>
-                            </tr>
-                        ))
-                        }
-                    </tbody>
-                </table>
+              
             </div>
         </div>
     );
