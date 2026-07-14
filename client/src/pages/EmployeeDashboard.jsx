@@ -7,6 +7,13 @@ function EmployeeDashboard() {
     const [appliedLeaves,setAppliedLeaves]=useState(0);
     const [pendingLeaves,setPendingLeaves]=useState(0);
     const [leaveList,setLeaveList]=useState([]);
+    const [imgError, setImgError] = useState(false);
+    const [prevPhoto, setPrevPhoto] = useState(null);
+
+    if (employee.photo !== prevPhoto) {
+        setPrevPhoto(employee.photo);
+        setImgError(false);
+    }
 
     useEffect(() => {
         const email = sessionStorage.getItem("email");
@@ -58,22 +65,35 @@ function EmployeeDashboard() {
             <div className="main">
                 {/* Welcome Section */}
                 <div className="welcome">
-                    <h1>Welcome Back!</h1>
-                    <h2>{employee.name}</h2>
-                    <p>Employee ID : {employee._id}</p>
-                    <p>Email : {employee.email}</p>
+                    {employee.photo && !imgError ? (
+                        <img
+                            src={`http://localhost:5000/uploads/${employee.photo}`}
+                            alt={employee.name || "Employee Photo"}
+                            className="profile-image"
+                        />
+                    ) : (
+                        <div className="profile-image-fallback">
+                            {employee.name ? employee.name.charAt(0).toUpperCase() : "K"}
+                        </div>
+                    )}
+                    <div>
+                        <h1>Welcome Back!</h1>
+                        <h2>{employee.name}</h2>
+                        <p>Employee ID : {employee._id}</p>
+                        <p>Email : {employee.email}</p>
+                    </div>
                 </div>
                 {/* Leave Cards */}
                 <div className="cards">
-                    <div className="card">
+                    <div className="card card-total">
                         <h3>Total Leaves</h3>
                         <h1>50</h1>
                     </div>
-                    <div className="card">
+                    <div className="card card-applied">
                         <h3>Applied Leaves</h3>
                         <h1>{appliedLeaves}</h1>
                     </div>
-                    <div className="card">
+                    <div className="card card-pending">
                         <h3>Pending Leaves</h3>
                         <h1>{pendingLeaves}</h1>
                     </div>

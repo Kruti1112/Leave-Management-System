@@ -1,4 +1,4 @@
-require("dotenv").config();
+require ("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
@@ -6,6 +6,7 @@ const connectDB = require("./config/db");
 const Employee = require("./models/Employee");
 const Leave = require("./models/Leave");
 const app = express();
+const path = require("path");
 
 connectDB();
 
@@ -13,22 +14,48 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
+// photo
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 //register api
 app.post("/register", async(req, res) =>{
+    try {
+        let photoName = req.body.photoName || "default.png";
+        
+        // Handle base64 image saving using fs and path modules (no multer)
+        if (req.body.photo && req.body.photo.includes(";base64,")) {
+            const fs = require("fs");
+            const matches = req.body.photo.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
+            if (matches && matches.length === 3) {
+                const buffer = Buffer.from(matches[2], 'base64');
+                const uniqueName = Date.now() + "_" + photoName;
+                const uploadPath = path.join(__dirname, "uploads", uniqueName);
+                
+                // Write the file to server/uploads/ using path concept
+                fs.writeFileSync(uploadPath, buffer);
+                photoName = uniqueName;
+            }
+        }
 
-    const employee = new Employee({
-        name: req.body.name,
-        email: req.body.email,
-        phone: req.body.phone,
-        address: req.body.address,
-        photo: req.body.photo,
-        password: req.body.password,
-        role: "Employee"
-    });
-    await employee.save();
-    res.json({
-        message: "Registration Successful.."
-    })
+        const employee = new Employee({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            address: req.body.address,
+            photo: photoName, // Save only the file name in DB
+            password: req.body.password,
+            role: "Employee"
+        });
+        await employee.save();
+        res.json({
+            message: "Registration Successful.."
+        });
+    } catch (error) {
+        console.error("Registration error:", error);
+        res.status(500).json({
+            message: "Registration Failed",
+            error: error.message
+        });
+    }
 });
 
 //login api

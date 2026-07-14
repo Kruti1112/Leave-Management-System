@@ -69,9 +69,10 @@ body{
 
 .leave-box label{
     display:block;
-    font-weight:bold;
+   /*font-weight:bold;*/
     margin-top:15px;
     margin-bottom:5px;
+    font-size: medium;
 }
 
 .leave-box input,

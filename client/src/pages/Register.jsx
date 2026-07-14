@@ -48,12 +48,31 @@ function Register() {
             return;
         }
 
+        const getBase64 = (file) => {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        };
+
+        let base64Photo = "";
+        try {
+            base64Photo = await getBase64(photo);
+        } catch (error) {
+            console.error("Error reading file:", error);
+            alert("Error reading file. Please try again.");
+            return;
+        }
+
         const employee = {
             name: name,
             email: email,
             phone: phone,
             address: address,
-            photo: photo.name,
+            photo: base64Photo,
+            photoName: photo.name,
             password: password
         };
 
@@ -76,6 +95,10 @@ function Register() {
             setAddress("");
             setPhoto(null);
             setPassword("");
+
+            // Reset file input value manually
+            const photoInput = document.getElementById("photo");
+            if (photoInput) photoInput.value = "";
 
         }
         //For error
