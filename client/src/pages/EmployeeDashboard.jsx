@@ -73,11 +73,11 @@ function EmployeeDashboard() {
                             onError={() => setImgError(true)}
                         />
                     ) : (
-                        <div className="profile-image-fallback">
+                        <div className="profile-image">
                             {employee.name ? employee.name.charAt(0).toUpperCase() : "K"}
                         </div>
                     )}
-                    <div>
+                    <div className="welcomeCard">
                         <h1>Welcome Back!</h1>
                         <h2>{employee.name}</h2>
                         <p>Employee ID : {employee._id}</p>
@@ -111,5 +111,4 @@ function EmployeeDashboard() {
         </div>
     );
 }
-
 export default EmployeeDashboard;

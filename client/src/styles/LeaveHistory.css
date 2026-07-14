@@ -12,7 +12,7 @@
 
 .sidebar{
     width:220px;
-    background:var(--primary);
+    background:#2c3e50;
     color:white;
     padding:20px;
 }
@@ -29,38 +29,43 @@
 .sidebar li{
     padding:15px;
     cursor:pointer;
-    border-radius:5px;
     margin-bottom:10px;
 }
 
 .sidebar li:hover{
-    background:var(--primary);
+    background:#1f2d3d;
 }
 
 .main{
     flex:1;
-    padding:32px;
+    padding:30px;
     background:#f4f6f9;
 }
 
-h2.page-title{
-    margin-bottom:24px;
-    color: #1e293b !important;
-    font-size: 2rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+.page-title{
+    margin-bottom:20px;
+    color:#333;
+    font-size:30px;
 }
 
 table{
     width:100%;
-    background:#ffffff;
-    border-collapse:separate;
-    border-spacing:0;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow: 0 14px 40px rgba(67, 99, 126, 0.12);
+    background:white;
+    border-collapse:collapse;
+    box-shadow:2px 2px 5px gray;
 }
 
+table th{
+    background:#2c3e50;
+    color:white;
+    padding:10px;
+}
+
+table td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+}
 thead th{
     background:var(--primary);
     color:#ffffff;

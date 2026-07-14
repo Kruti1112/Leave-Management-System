@@ -81,11 +81,8 @@ function ApplyLeave() {
     }
 
         return (
-
         <div className="dashboard">
-
             {/* Sidebar */}
-
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
@@ -97,7 +94,6 @@ function ApplyLeave() {
             </div>
 
             {/* Main */}
-
             <div className="main">
                 <div className="leave-box">
                     <h2>Apply Leave</h2>
@@ -159,6 +155,4 @@ function ApplyLeave() {
     );
 
 }
-
 export default ApplyLeave;
-

@@ -14,7 +14,6 @@ function AdminDashboard() {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
-    // Check auth
     useEffect(() => {
         const isAdminLoggedIn = sessionStorage.getItem("isAdminLoggedIn");
         if (isAdminLoggedIn !== "true") {
@@ -44,7 +43,7 @@ function AdminDashboard() {
             .then((response) => {
                 if (response.data.success) {
                     alert(response.data.message);
-                    fetchData(); // Refresh stats and list
+                    fetchData(); 
                 } else {
                     alert("Failed to update status");
                 }
@@ -61,7 +60,7 @@ function AdminDashboard() {
     };
 
     if (sessionStorage.getItem("isAdminLoggedIn") !== "true") {
-        return null; // Prevents flashing dashboard content before redirect
+        return null;
     }
 
     return (
@@ -103,7 +102,7 @@ function AdminDashboard() {
                     </div>
                 ) : (
                     <>
-                        {/* Stats Cards */}
+                        {/* Status Cards */}
                         <div className="stats-cards">
                             <div className="card card-blue">
                                 <div className="card-info">

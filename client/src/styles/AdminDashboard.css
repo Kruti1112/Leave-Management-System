@@ -5,7 +5,6 @@
 }
 
 /* Sidebar */
-
 .sidebar{
     width:240px;
     background:var(--primary);
@@ -181,8 +180,7 @@
 }
 .card-green .card-value {
     color: white;
-}
-
+ transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);}
 
 .table-section{
     background:white;

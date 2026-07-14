@@ -21,7 +21,6 @@ function LeaveHistory() {
         <div className="dashboard">
 
             {/* Sidebar */}
-
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
@@ -31,9 +30,7 @@ function LeaveHistory() {
                     <li onClick={() => window.location="/login"}>Logout</li>
                 </ul>
             </div>
-
             {/* Main */}
-
             <div className="main">
                 <h2 className="page-title">Leave History</h2>
                 <table>

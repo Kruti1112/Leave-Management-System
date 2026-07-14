@@ -2,6 +2,7 @@ require ("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const fs = require("fs");
 const connectDB = require("./config/db");
 const Employee = require("./models/Employee");
 const Leave = require("./models/Leave");
@@ -10,18 +11,23 @@ const path = require("path");
 
 connectDB();
 
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 
 // photo
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(uploadsDir));
 //register api
 app.post("/register", async(req, res) =>{
     try {
         let photoName = req.body.photoName || "default.png";
         
-        // Handle base64 image saving using fs and path modules (no multer)
+        // image
         if (req.body.photo && req.body.photo.includes(";base64,")) {
             const fs = require("fs");
             const matches = req.body.photo.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
@@ -29,8 +35,6 @@ app.post("/register", async(req, res) =>{
                 const buffer = Buffer.from(matches[2], 'base64');
                 const uniqueName = Date.now() + "_" + photoName;
                 const uploadPath = path.join(__dirname, "uploads", uniqueName);
-                
-                // Write the file to server/uploads/ using path concept
                 fs.writeFileSync(uploadPath, buffer);
                 photoName = uniqueName;
             }
@@ -57,7 +61,6 @@ app.post("/register", async(req, res) =>{
         });
     }
 });
-
 //login api
 app.post("/login", async (req, res) => {
     try {
@@ -91,7 +94,6 @@ app.post("/login", async (req, res) => {
         });
     }
 });
-
 //Admin api
 app.post("/adminLogin", (req, res) => {
     console.log("Admin Login Attempt:", req.body);
@@ -114,12 +116,9 @@ app.post("/adminLogin", (req, res) => {
             success: false,
             message: "Invalid Email or Password"
         });
-
     }
-
 });
-
-// Admin stats api
+// Admin status api
 app.get("/admin/stats", async (req, res) => {
     try {
         const totalEmployees = await Employee.countDocuments({});
@@ -138,7 +137,6 @@ app.get("/admin/stats", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch stats" });
     }
 });
-
 // Admin leaves api
 app.get("/admin/leaves", async (req, res) => {
     try {
@@ -149,7 +147,6 @@ app.get("/admin/leaves", async (req, res) => {
         res.status(500).json({ error: "Failed to fetch leaves" });
     }
 });
-
 // Admin update leave status api
 app.put("/admin/leaves/:id", async (req, res) => {
     try {
@@ -175,7 +172,6 @@ app.put("/admin/leaves/:id", async (req, res) => {
         res.status(500).json({ error: "Failed to update leave status" });
     }
 });
-
 //Get employee details by email
 app.get("/employee/:email", async (req, res) => {
     try {
@@ -207,7 +203,6 @@ app.get("/leavehistory/:email", async (req, res) => {
     });
     res.send(leaves);
 });
-
 //Aplly leave api
 app.post("/applyleave", async (req, res) => {
     try {
