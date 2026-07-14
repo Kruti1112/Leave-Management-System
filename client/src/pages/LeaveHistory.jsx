@@ -35,7 +35,7 @@ function LeaveHistory() {
             {/* Main */}
 
             <div className="main">
-                <h1>Leave History</h1>
+                <h2 className="page-title">Leave History</h2>
                 <table>
                     <thead>
                         <tr>

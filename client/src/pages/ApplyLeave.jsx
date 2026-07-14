@@ -5,10 +5,10 @@ import "../styles/Applyleave.css";
 function ApplyLeave() {
 
     const [employee, setEmployee] = useState({});
-    const [leaveType,setLeaveType] = useState({});
-    const [fromDate,setFromDate] = useState({});
-    const [toDate,setToDate] = useState({});
-    const [reason,setReason] = useState({});
+    const [leaveType,setLeaveType] = useState("");
+    const [fromDate,setFromDate] = useState("");
+    const [toDate,setToDate] = useState("");
+    const [reason,setReason] = useState("");
     const email = sessionStorage.getItem("email");
 
     useEffect(() => {
@@ -100,7 +100,7 @@ function ApplyLeave() {
 
             <div className="main">
                 <div className="leave-box">
-                    <h1>Apply Leave</h1>
+                    <h2>Apply Leave</h2>
                     <label>Employee Name</label>
                     <input
                         type="text"

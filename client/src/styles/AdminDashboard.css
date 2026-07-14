@@ -8,7 +8,7 @@
 
 .sidebar{
     width:240px;
-    background:#1565c0;
+    background:var(--primary);
     color:white;
     padding:25px;
 }
@@ -19,8 +19,9 @@
 }
 
 .sidebar-header h2{
-    margin-bottom:8px;
-    font-size:28px;
+    text-align:center;
+    margin-bottom:40px;
+    color: #ffffff;
 }
 
 .sidebar-header p{
@@ -41,11 +42,11 @@
 }
 
 .sidebar-menu li:hover{
-    background:#0d47a1;
+    background:var(--primary-dark);
 }
 
 .active{
-    background:#0d47a1;
+    background:var(--primary);
 }
 
 /* Main */
@@ -63,7 +64,8 @@
 }
 
 .main-header h1{
-    color:#1565c0;
+    color:var(--primary);
+    font-size: 40px ;
 }
 
 .admin-profile{
@@ -80,17 +82,18 @@
     width:50px;
     height:50px;
     border-radius:50%;
-    background:#1565c0;
+    background:var(--primary);
     color:white;
     display:flex;
     justify-content:center;
     align-items:center;
     font-size:22px;
     font-weight:bold;
+    box-shadow: 0 10px 26px rgba(var(--primary-rgb),0.18);
 }
 
 .profile-details h3{
-    color:#1565c0;
+    color:var(--primary);
     font-size:18px;
 }
 
@@ -133,8 +136,8 @@
 }
 
 .card-blue {
-    background: linear-gradient(135deg,  #667eea 0%,#1565c0 100%);
-    box-shadow: 0 10px 25px rgba(42, 82, 152, 0.25);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+    box-shadow: 0 10px 25px rgba(var(--primary-rgb),0.25);
     color: white;
 }
 .card-blue h3 {
@@ -145,8 +148,8 @@
 }
 
 .card-purple {
-    background: linear-gradient(135deg, #667eea 0%,#1565c0 100%);
-    box-shadow: 0 10px 25px rgba(42, 82, 152, 0.25);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+    box-shadow: 0 10px 25px rgba(var(--primary-rgb),0.25);
     color: white;
 }
 .card-purple h3 {
@@ -157,8 +160,8 @@
 }
 
 .card-orange {
-    background: linear-gradient(135deg, #667eea 0%,#1565c0 100%);
-    box-shadow: 0 10px 25px rgba(42, 82, 152, 0.25);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+    box-shadow: 0 10px 25px rgba(var(--primary-rgb),0.25);
     color: white;
 }
 .card-orange h3 {
@@ -169,8 +172,8 @@
 }
 
 .card-green {
-    background: linear-gradient(135deg,  #667eea 0%,#1565c0 100%);
-    box-shadow: 0 10px 25px rgba(42, 82, 152, 0.25);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
+    box-shadow: 0 10px 25px rgba(var(--primary-rgb),0.25);
     color: white;
 }
 .card-green h3 {
@@ -189,7 +192,7 @@
 }
 
 .table-section h2{
-    color:#1565c0;
+    color:var(--primary);
     margin-bottom:20px;
 }
 
@@ -199,7 +202,7 @@ table{
 }
 
 th{
-    background:#1565c0;
+    background:var(--primary);
     color:white;
     padding:12px;
 }

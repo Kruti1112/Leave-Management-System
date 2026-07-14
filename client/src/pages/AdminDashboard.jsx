@@ -68,12 +68,10 @@ function AdminDashboard() {
         <div className="dashboard-container">
             {/* Sidebar */}
             <div className="sidebar">
-                <div className="sidebar-header">
-                    <h2>Leave Management System</h2>
-                </div>
+                <h2>Leave Management System</h2>
                 <ul className="sidebar-menu">
-                    <li className="active">Dashboard</li>
-                    <li onClick={handleLogout} className="logout-btn">Logout</li>
+                <li className="active">Dashboard</li>
+                <li onClick={handleLogout} className="logout-btn">Logout</li>
                 </ul>
             </div>
 
@@ -82,7 +80,19 @@ function AdminDashboard() {
                 <header className="main-header">
                     <h1>Admin Dashboard</h1>
                     <div className="admin-profile">
-                        <span>Welcome, Kruti</span>
+                        <div className="profile-circle">
+                            {(() => {
+                                const raw = sessionStorage.getItem("adminName") || sessionStorage.getItem("adminEmail") || "A";
+                                const namePart = raw.includes("@") ? raw.split("@")[0] : raw;
+                                return namePart ? namePart.charAt(0).toUpperCase() : "A";
+                            })()}
+                        </div>
+                        <div className="profile-details">
+                            <h3>{(() => {
+                                const raw = sessionStorage.getItem("adminName") || sessionStorage.getItem("adminEmail") || "Admin";
+                                return raw.includes("@") ? raw.split("@")[0] : raw;
+                            })()}</h3>
+                        </div>
                     </div>
                 </header>
 

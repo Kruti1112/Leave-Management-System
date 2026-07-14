@@ -40,7 +40,7 @@ function App() {
                 border: "1px solid #dbeafe",
                 textAlign: "center"
               }}>
-                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Employee Portal</h2>
+                <h2 style={{ color: "#43637E", marginBottom: "14px" }}>Employee Portal</h2>
                 <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                   See and manage your leave requests in one place.
                 </p>
@@ -49,7 +49,7 @@ function App() {
                 </p>
                 <a href="/login">
                   <button style={{
-                    backgroundColor: "#3b82f6",
+                    backgroundColor: "#43637E",
                     color: "white",
                     border: "none",
                     padding: "12px 22px",
@@ -71,7 +71,7 @@ function App() {
                 border: "1px solid #dbeafe",
                 textAlign: "center"
               }}>
-                <h2 style={{ color: "#1d4ed8", marginBottom: "14px" }}>Admin Portal</h2>
+                <h2 style={{ color: "#43637E", marginBottom: "14px" }}>Admin Portal</h2>
                 <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                   Manage employee leave requests efficiently.
                 </p>
@@ -80,7 +80,7 @@ function App() {
                 </p>
                 <a href="/adminlogin">
                   <button style={{
-                    backgroundColor: "#2563eb",
+                    backgroundColor: "#43637E",
                     color: "white",
                     border: "none",
                     padding: "12px 22px",

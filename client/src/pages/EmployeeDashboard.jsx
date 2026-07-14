@@ -70,6 +70,7 @@ function EmployeeDashboard() {
                             src={`http://localhost:5000/uploads/${employee.photo}`}
                             alt={employee.name || "Employee Photo"}
                             className="profile-image"
+                            onError={() => setImgError(true)}
                         />
                     ) : (
                         <div className="profile-image-fallback">

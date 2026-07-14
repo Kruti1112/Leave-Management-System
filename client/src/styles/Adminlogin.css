@@ -20,8 +20,9 @@ body{
 
 .adminlogin-container h1{
     text-align:center;
-    color:#1565c0;
-    margin-bottom:30px;
+    font-size:20px;
+    margin-bottom:16px;
+    color:#1f2937;
 }
 
 .form-group{
@@ -45,13 +46,13 @@ body{
 }
 
 .form-group input:focus{
-    border:2px solid #1565c0;
+    border:2px solid var(--primary);
 }
 
 button{
     width:100%;
     padding:12px;
-    background:#1565c0;
+    background:var(--primary);
     color:white;
     border:none;
     border-radius:5px;
@@ -61,7 +62,7 @@ button{
 }
 
 button:hover{
-    background:#0d47a1;
+    background:var(--primary-dark);
 }
 
 .adminlogin-container p{
@@ -71,7 +72,7 @@ button:hover{
 }
 
 .adminlogin-container a{
-    color:#1565c0;
+    color:var(--primary);
     text-decoration:none;
     font-weight:bold;
 }
