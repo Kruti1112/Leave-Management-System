@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 //register api
-app.post("/register", async(req, res) =>{
+app.post("/register",(req, res) =>{
     try {
         const employee = new Employee({
             name: req.body.name,
@@ -41,7 +41,7 @@ app.post("/register", async(req, res) =>{
     }
 });
 //login api
-app.post("/login", async (req, res) => {
+app.post("/login", (req, res) => {
     try {
         console.log(req.body);
 
@@ -97,62 +97,9 @@ app.post("/adminLogin", (req, res) => {
         });
     }
 });
-// Admin status api
-app.get("/admin/stats", async (req, res) => {
-    try {
-        const totalEmployees = await Employee.countDocuments({});
-        const totalLeaves = await Leave.countDocuments({});
-        const pendingLeaves = await Leave.countDocuments({ status: "Pending" });
-        const approvedLeaves = await Leave.countDocuments({ status: "Approved" });
 
-        res.json({
-            totalEmployees,
-            totalLeaves,
-            pendingLeaves,
-            approvedLeaves
-        });
-    } catch (error) {
-        console.error("Error fetching admin stats:", error);
-        res.status(500).json({ error: "Failed to fetch stats" });
-    }
-});
-// Admin leaves api
-app.get("/admin/leaves", async (req, res) => {
-    try {
-        const leaves = await Leave.find({});
-        res.json(leaves);
-    } catch (error) {
-        console.error("Error fetching admin leaves:", error);
-        res.status(500).json({ error: "Failed to fetch leaves" });
-    }
-});
-// Admin update leave status api
-app.put("/admin/leaves/:id", async (req, res) => {
-    try {
-        const { status } = req.body;
-        if (!["Approved", "Rejected"].includes(status)) {
-            return res.status(400).json({ error: "Invalid status value" });
-        }
-        const updatedLeave = await Leave.findByIdAndUpdate(
-            req.params.id,
-            { status },
-            { new: true }
-        );
-        if (!updatedLeave) {
-            return res.status(404).json({ error: "Leave request not found" });
-        }
-        res.json({
-            success: true,
-            message: `Leave status updated to ${status}`,
-            leave: updatedLeave
-        });
-    } catch (error) {
-        console.error("Error updating leave status:", error);
-        res.status(500).json({ error: "Failed to update leave status" });
-    }
-});
 //Get employee details by email
-app.get("/employee/:email", async (req, res) => {
+app.get("/employee/:email", (req, res) => {
     try {
         const employee = await Employee.findOne({ email: req.params.email });
         if (employee) {
@@ -167,7 +114,7 @@ app.get("/employee/:email", async (req, res) => {
 });
 
 //Pending Leaves
-app.get("/pendingleave/:email",async(req,res)=>{
+app.get("/pendingleave/:email",(req,res)=>{
     const total=await Leave.countDocuments({
         email:req.params.email,
         status:"Pending"
@@ -176,14 +123,14 @@ app.get("/pendingleave/:email",async(req,res)=>{
 });
 
 //Leave history
-app.get("/leavehistory/:email", async (req, res) => {
+app.get("/leavehistory/:email", (req, res) => {
     const leaves = await Leave.find({
         email: req.params.email
     });
     res.send(leaves);
 });
 //Aplly leave api
-app.post("/applyleave", async (req, res) => {
+app.post("/applyleave", (req, res) => {
     try {
         const leave = new Leave({
             employeeId: req.body.employeeId,

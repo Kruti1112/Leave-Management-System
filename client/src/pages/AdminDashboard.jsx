@@ -63,12 +63,15 @@ function AdminDashboard() {
 
             <div className="main-content">
                 <div className="welcome-card">
-                    <h2>Welcome Back Admin!</h2>
-                    <p>Kruti.</p>
-                    <p>Manage employee leave requests here.</p>
+                    <div className="profileimage">K</div>
+                    <div>
+                        <h2>Welcome Back Admin!</h2>
+                        <p>Kruti.</p>
+                        <p>Manage employee leave requests here.</p>
+                    </div>
                 </div>
                     <>
-                        <div className="stats-cards">
+                        <div className="leave-cards">
                             <div className="card">
                                 <h3>Total Employees</h3>
                                 <p className="card-value">{stats.totalEmployees}</p>
@@ -78,7 +81,7 @@ function AdminDashboard() {
                                 <p className="card-value">{stats.totalLeaves}</p>
                             </div>
                             <div className="card">
-                                <h3>Pending Leaves</h3><br />
+                                <h3>Pending Leaves</h3>
                                 <p className="card-value">{stats.pendingLeaves}</p>
                             </div>
                             <div className="card">
