@@ -16,7 +16,7 @@ function App() {
           element={
             <>
               <div style={{ textAlign: "center", padding: "40px 20px 20px" }}>
-                <h1 style={{ color: "#1f2937", fontSize: "34px", marginBottom: "10px" }}>
+                <h1 style={{ color: "#2c3e50", fontSize: "34px", marginBottom: "10px" }}>
                   Welcome to the Leave Management App
                 </h1>
                 <p style={{ color: "#6b7280", fontSize: "16px", marginBottom: "0" }}>
@@ -37,10 +37,9 @@ function App() {
                   background: "linear-gradient(135deg, #ffffff 0%, #f8fbff 100%)",
                   borderRadius: "16px",
                   boxShadow: "0 10px 24px rgba(59, 130, 246, 0.16)",
-                  border: "1px solid #dbeafe",
                   textAlign: "center"
                 }}>
-                  <h2 style={{ color: "#43637E", marginBottom: "14px" }}>Employee Portal</h2>
+                  <h2 style={{ color: "#2c3e50", marginBottom: "14px" }}>Employee Portal</h2>
                   <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                     See and manage your leave requests in one place.
                   </p>
@@ -65,13 +64,12 @@ function App() {
                 <div style={{
                   width: "320px",
                   padding: "28px 24px",
-                  background: "linear-gradient(135deg, #ffffff 0%, #f8fbff 100%)",
+                  background: "linear-gradient(135deg, #ffffff 0%, #f8fbff 80%)",
                   borderRadius: "16px",
                   boxShadow: "0 10px 24px rgba(59, 130, 246, 0.16)",
-                  border: "1px solid #dbeafe",
                   textAlign: "center"
                 }}>
-                  <h2 style={{ color: "#43637E", marginBottom: "14px" }}>Admin Portal</h2>
+                  <h2 style={{ color: "#2c3e50", marginBottom: "14px" }}>Admin Portal</h2>
                   <p style={{ color: "#4b5563", lineHeight: "1.6", marginBottom: "8px" }}>
                     Manage employee leave requests efficiently.
                   </p>

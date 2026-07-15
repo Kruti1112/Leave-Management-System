@@ -59,6 +59,10 @@ body{
     margin-bottom:30px;
 }
 
+.welcome > div h2{
+    color: #2c3e50;
+}
+
 .welcome > div{
     display:flex;
     flex-direction:column;

@@ -65,8 +65,8 @@ function AdminDashboard() {
                 <div className="welcome-card">
                     <div className="profileimage">K</div>
                     <div>
-                        <h2>Welcome Back Admin!</h2>
-                        <p>Kruti.</p>
+                        <h2>Welcome Back Admin,</h2>
+                        <p>Kruti Patel.</p>
                         <p>Manage employee leave requests here.</p>
                     </div>
                 </div>

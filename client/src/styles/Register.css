@@ -10,7 +10,8 @@ body{
 }
 
 .register-container{
-    width:min(88vw, 390px);
+    width: 88vw;
+    max-width: 390px;
     background:#fff;
     margin:24px auto;
     padding:22px 20px;

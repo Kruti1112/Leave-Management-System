@@ -17,7 +17,8 @@ body{
 /* Sidebar */
 
 .sidebar{
-    width:220px;
+    width:240px;
+    flex:0 0 240px;
     background:#43637E;
     color:white;
     padding:20px;
@@ -63,7 +64,7 @@ body{
 
 .leave-box h2{
     text-align:center;
-    color: #1e293b;
+    color: #2c3e50 ;
     margin-bottom:25px;
 }
 
