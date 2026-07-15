@@ -50,13 +50,13 @@ body{
 }
 
 .form-group input:focus{
-    border-color:var(--primary);
+    border-color:#43637E;
 }
 
 button{
     width:100%;
     padding:10px;
-    background:var(--primary);
+    background:#43637E;
     color:white;
     border:none;
     border-radius:8px;
@@ -67,7 +67,7 @@ button{
 }
 
 button:hover{
-    background:var(--primary-dark);
+    background:#39546B;
 }
 
 .login-container p{
@@ -78,7 +78,7 @@ button:hover{
 }
 
 .login-container a{
-    color:var(--primary);
+    color:#43637E;
     text-decoration:none;
     font-weight:600;
 }

@@ -4,33 +4,26 @@ import "../styles/LeaveHistory.css";
 
 function LeaveHistory() {
     const [leaves, setLeaves] = useState([]);
-
     const email = sessionStorage.getItem("email");
-    console.log(email);
+
     useEffect(() => {
         axios.get("http://localhost:5000/leavehistory/" + email)
-        .then((response) => {
-            setLeaves(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }, []);
+            .then((response) => setLeaves(response.data))
+            .catch((error) => console.log(error));
+    }, [email]);
 
     return (
         <div className="dashboard">
-
-            {/* Sidebar */}
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li onClick={() => window.location="/dashboard"}>Dashboard</li>
-                    <li onClick={() => window.location="/applyleave"}>Apply Leave</li>
+                    <li onClick={() => (window.location = "/dashboard")}>Dashboard</li>
+                    <li onClick={() => (window.location = "/applyleave")}>Apply Leave</li>
                     <li>Leave History</li>
-                    <li onClick={() => window.location="/login"}>Logout</li>
+                    <li onClick={() => (window.location = "/login")}>Logout</li>
                 </ul>
             </div>
-            {/* Main */}
+
             <div className="main">
                 <h2 className="page-title">Leave History</h2>
                 <table>
@@ -59,4 +52,5 @@ function LeaveHistory() {
         </div>
     );
 }
+
 export default LeaveHistory;

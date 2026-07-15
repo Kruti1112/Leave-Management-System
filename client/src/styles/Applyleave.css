@@ -18,7 +18,7 @@ body{
 
 .sidebar{
     width:220px;
-    background:var(--primary);
+    background:#43637E;
     color:white;
     padding:20px;
 }
@@ -40,7 +40,7 @@ body{
 }
 
 .sidebar ul li:hover{
-    background:var(--primary-dark);
+    background:#39546B;
 }
 
 /* Main */
@@ -69,7 +69,6 @@ body{
 
 .leave-box label{
     display:block;
-   /*font-weight:bold;*/
     margin-top:15px;
     margin-bottom:5px;
     font-size: medium;
@@ -89,7 +88,7 @@ body{
 .leave-box input:focus,
 .leave-box select:focus,
 .leave-box textarea:focus{
-    border:1px solid var(--primary);
+    border:1px solid #43637E;
 }
 
 .leave-box textarea{
@@ -100,7 +99,7 @@ body{
     width:100%;
     margin-top:25px;
     padding:12px;
-    background:var(--primary);
+    background:#43637E;
     color:white;
     border:none;
     border-radius:5px;
@@ -109,5 +108,5 @@ body{
 }
 
 .leave-box button:hover{
-    background:var(--primary-dark);
+    background:#39546B;
 }

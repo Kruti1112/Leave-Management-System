@@ -11,41 +11,20 @@ const path = require("path");
 
 connectDB();
 
-const uploadsDir = path.join(__dirname, "uploads");
-if (!fs.existsSync(uploadsDir)) {
-    fs.mkdirSync(uploadsDir, { recursive: true });
-}
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
-// photo
-app.use("/uploads", express.static(uploadsDir));
 //register api
 app.post("/register", async(req, res) =>{
     try {
-        let photoName = req.body.photoName || "default.png";
-        
-        // image
-        if (req.body.photo && req.body.photo.includes(";base64,")) {
-            const fs = require("fs");
-            const matches = req.body.photo.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
-            if (matches && matches.length === 3) {
-                const buffer = Buffer.from(matches[2], 'base64');
-                const uniqueName = Date.now() + "_" + photoName;
-                const uploadPath = path.join(__dirname, "uploads", uniqueName);
-                fs.writeFileSync(uploadPath, buffer);
-                photoName = uniqueName;
-            }
-        }
-
         const employee = new Employee({
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
             address: req.body.address,
-            photo: photoName, // Save only the file name in DB
+            photo: photoName,
             password: req.body.password,
             role: "Employee"
         });

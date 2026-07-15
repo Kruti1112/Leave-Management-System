@@ -52,7 +52,7 @@ table{
     width:100%;
     background:white;
     border-collapse:collapse;
-    box-shadow:2px 2px 5px gray;
+    box-shadow:0.5px 1.5px 5px rgba(57, 57, 57, 0.5);
 }
 
 table th{
@@ -67,7 +67,7 @@ table td{
     text-align:center;
 }
 thead th{
-    background:var(--primary);
+    background:#43637E;
     color:#ffffff;
     padding:16px 18px;
     text-align:center;
