@@ -6,6 +6,7 @@ import ApplyLeave from "./pages/ApplyLeave";
 import LeaveHistory from "./pages/LeaveHistory";
 import AdminLogin from "./pages/Adminlogin";
 import AdminDashboard from "./pages/AdminDashboard";
+import LeaveRequest from "./pages/LeaveRequest";
 
 function App() {
   return (
@@ -99,8 +100,11 @@ function App() {
         <Route path="/dashboard" element={<EmployeeDashboard />} />
         <Route path="/applyleave" element={<ApplyLeave />} />
         <Route path="/leavehistory" element={<LeaveHistory />} />
-        <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
+        <Route path="/admindashboard" element={<AdminDashboard />} />
+        <Route path="/leaverequests" element={<LeaveRequest />} />
+
+        
       </Routes>
     </BrowserRouter>
   );

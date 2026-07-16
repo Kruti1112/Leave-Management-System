@@ -3,68 +3,136 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function EmployeeDashboard() {
+
     const [employee, setEmployee] = useState({});
     const [appliedLeaves, setAppliedLeaves] = useState(0);
     const [pendingLeaves, setPendingLeaves] = useState(0);
+
     const email = sessionStorage.getItem("email");
 
-    useEffect(() => {
+    function getDashboardData() {
         axios.get("http://localhost:5000/employee/" + email)
-            .then((response) => setEmployee(response.data))
-            .catch((error) => console.log(error));
+            .then((response) => {
+                setEmployee(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
 
         axios.get("http://localhost:5000/appliedleave/" + email)
-            .then((response) => setAppliedLeaves(response.data));
+            .then((response) => {
+                setAppliedLeaves(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
 
         axios.get("http://localhost:5000/pendingleave/" + email)
-            .then((response) => setPendingLeaves(response.data));
-    }, [email]);
+            .then((response) => {
+                setPendingLeaves(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }
+    //load data 
+    useEffect(() => {
+
+        getDashboardData();
+
+    }, []);
 
     return (
         <div className="dashboard">
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li>Dashboard</li>
-                    <li onClick={() => (window.location = "/applyleave")}>Apply Leave</li>
-                    <li onClick={() => (window.location = "/leavehistory")}>Leave History</li>
-                    <li onClick={() => (window.location = "/login")}>Logout</li>
+                    <li>
+                        Dashboard
+                    </li>
+
+                    <li onClick={() => (window.location = "/applyleave")}>
+                        Apply Leave
+                    </li>
+
+                    <li onClick={() => (window.location = "/leavehistory")}>
+                        Leave History
+                    </li>
+
+                    <li onClick={() => (window.location = "/login")}>
+                        Logout
+                    </li>
                 </ul>
             </div>
 
             <div className="main">
                 <div className="welcome">
                     <div className="profile-image">
-                        {employee.name ? employee.name.charAt(0).toUpperCase() : "K"}
+                        {employee.name
+                            ? employee.name.charAt(0).toUpperCase()
+                            : "K"}
                     </div>
+
                     <div>
-                        <h1>Welcome Back!</h1>
-                        <h2>{employee.name}</h2>
-                        <p>Employee ID: {employee._id}</p>
-                        <p>Email: {employee.email}</p>
+                        <h1>
+                            Welcome Back!
+                        </h1>
+                        <h2>
+                            {employee.name}
+                        </h2>
+                        <p>
+                            Employee ID: {employee._id}
+                        </p>
+                        <p>
+                            Email: {employee.email}
+                        </p>
                     </div>
                 </div>
 
                 <div className="cards">
                     <div className="card">
-                        <h3>Total Leaves</h3>
-                        <h1>50</h1>
+                        <h3>
+                            Total Leaves
+                        </h3>
+                        <h1>
+                            50
+                        </h1>
                     </div>
+
                     <div className="card">
-                        <h3>Applied Leaves</h3>
-                        <h1>{appliedLeaves}</h1>
+                        <h3>
+                            Applied Leaves
+                        </h3>
+                        <h1>
+                            {appliedLeaves}
+                        </h1>
                     </div>
+
                     <div className="card">
-                        <h3>Pending Leaves</h3>
-                        <h1>{pendingLeaves}</h1>
+                        <h3>
+                            Pending Leaves
+                        </h3>
+                        <h1>
+                            {pendingLeaves}
+                        </h1>
                     </div>
                 </div>
 
                 <div className="buttons">
-                    <button onClick={() => (window.location = "/applyleave")}>Apply Leave</button>
-                    <button onClick={() => (window.location = "/leavehistory")}>Leave History</button>
+                    <button onClick={() => (window.location = "/applyleave")}>
+                        Apply Leave
+                    </button>
+
+                    <button onClick={() => (window.location = "/leavehistory")}>
+                        Leave History
+                    </button>
                 </div>
+
             </div>
+
         </div>
     );
 }

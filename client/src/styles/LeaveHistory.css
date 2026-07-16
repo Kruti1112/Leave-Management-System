@@ -78,10 +78,6 @@ thead th{
     letter-spacing:0.8px;
 }
 
-tbody tr{
-    transition: background 180ms ease;
-}
-
 tbody tr:hover{
     background:#f2f8f7;
 }
@@ -91,8 +87,4 @@ td{
     text-align:center;
     color:#475569;
     border-bottom:1px solid #edf2f7;
-}
-
-tbody tr:last-child td{
-    border-bottom:none;
 }

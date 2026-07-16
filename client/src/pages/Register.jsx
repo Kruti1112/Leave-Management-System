@@ -11,7 +11,7 @@ function Register() {
     const [photo, setPhoto] = useState(null);
     const [password, setPassword] = useState("");
 
-    async function register() {
+    function register() {
 
         if (name === "") {
             alert("Please enter your name");
@@ -48,21 +48,16 @@ function Register() {
             return;
         }
 
-        const getBase64 = (file) => {
-            return new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result);
-                reader.onerror = error => reject(error);
-            });
-        };
-
-        let base64Photo = "";
-        try {
-            base64Photo = await getBase64(photo);
-        } catch (error) {
-            console.error("Error reading file:", error);
-            alert("Error reading file. Please try again.");
+        if (!/[A-Z]/.test(password)) {
+            alert("Password must contain at least one uppercase letter");
+            return;
+        }
+        if (!/[a-z]/.test(password)) {
+            alert("Password must contain at least one lowercase letter");
+            return;
+        }
+        if (!/[0-9]/.test(password)) {
+            alert("Password must contain at least one number");
             return;
         }
 
@@ -71,24 +66,20 @@ function Register() {
             email: email,
             phone: phone,
             address: address,
-            photo: base64Photo,
-            photoName: photo.name,
+            photo: photo.name,
             password: password
         };
 
-        try {
+        axios.post(
+            "http://localhost:5000/register",
+            employee
+        )
+        .then((response) => {
 
-            const response = await axios.post(
-                "http://localhost:5000/register",
-                employee
-            );
-            //After successfully registration 
-
-            alert("Successfully Registerd...");
+            alert("Successfully Registered...");
 
             console.log(response.data);
 
-            // Clear form after successful registration
             setName("");
             setEmail("");
             setPhone("");
@@ -96,34 +87,104 @@ function Register() {
             setPhoto(null);
             setPassword("");
 
-            // Reset file input value manually
-            const photoInput = document.getElementById("photo");
-            if (photoInput) photoInput.value = "";
+            const photo = document.getElementById("photo");
 
-        }
-        //For error
-        catch (error) {
+            if (photo) {
+                photo.value = "";
+            }
+
+        })
+        .catch((error) => {
 
             console.log(error);
 
             alert("Registration Failed");
 
-        }
+        });
 
     }
+
+
     return(
         <div className="register-container">
+
             <h1>Employee Registration</h1>
-            <div className="form-group"><label>Name</label><input id="name" type="text" placeholder="Full Name" value={name} onChange={(e) => setName(e.target.value)} /></div>
-            <div className="form-group"><label>Email ID</label><input id="email" type="email" placeholder="Email ID" value={email} onChange={(e) => setEmail(e.target.value)} /></div>
-            <div className="form-group"><label>Phone Number</label><input id="phone" type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} /></div>
-            <div className="form-group"><label>Address</label><input id="address" type="text" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} /></div>
-            <div className="form-group"><label>Upload Your Photo Here</label><input id="photo" type="file" placeholder="Upload Photo" onChange={(e) => setPhoto(e.target.files[0])} /></div>
-            <div className="form-group"><label>Password</label><input id="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /></div>
-            <button onClick={register}>Register</button>
-            <p>Already have an account? <a href="/login">Login</a></p>
+
+            <div className="form-group">
+                <label>Name</label>
+                <input 
+                    id="name"
+                    type="text"
+                    placeholder="Full Name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Email ID</label>
+                <input 
+                    id="email"
+                    type="email"
+                    placeholder="Email ID"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Phone Number</label>
+                <input 
+                    id="phone"
+                    type="tel"
+                    placeholder="Phone Number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Address</label>
+                <input 
+                    id="address"
+                    type="text"
+                    placeholder="Address"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Upload Your Photo Here</label>
+                <input 
+                    id="photo"
+                    type="file"
+                    onChange={(e) => setPhoto(e.target.files[0])}
+                />
+            </div>
+
+            <div className="form-group">
+                <label>Password</label>
+                <input 
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+
+            <button onClick={register}>
+                Register
+            </button>
+
+            <p>
+                Already have an account? 
+                <a href="/login"> Login</a>
+            </p>
+
         </div>
-    )
+    );
 }
+
 export default Register;
-               

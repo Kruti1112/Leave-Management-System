@@ -1,31 +1,57 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/LeaveHistory.css";
 
 function LeaveHistory() {
+
     const [leaves, setLeaves] = useState([]);
+
     const email = sessionStorage.getItem("email");
 
-    useEffect(() => {
+    function getLeaveHistory() {
+
         axios.get("http://localhost:5000/leavehistory/" + email)
-            .then((response) => setLeaves(response.data))
-            .catch((error) => console.log(error));
-    }, [email]);
+            .then((response) => {
+                setLeaves(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+
+        getLeaveHistory();
+
+    }, []);
 
     return (
         <div className="dashboard">
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li onClick={() => (window.location = "/dashboard")}>Dashboard</li>
-                    <li onClick={() => (window.location = "/applyleave")}>Apply Leave</li>
-                    <li>Leave History</li>
-                    <li onClick={() => (window.location = "/login")}>Logout</li>
+                    <li onClick={() => (window.location = "/dashboard")}>
+                        Dashboard
+                    </li>
+
+                    <li onClick={() => (window.location = "/applyleave")}>
+                        Apply Leave
+                    </li>
+
+                    <li>
+                        Leave History
+                    </li>
+
+                    <li onClick={() => (window.location = "/login")}>
+                        Logout
+                    </li>
                 </ul>
             </div>
 
             <div className="main">
-                <h2 className="page-title">Leave History</h2>
+                <h2 className="page-title">
+                    Leave History
+                </h2>
                 <table>
                     <thead>
                         <tr>
