@@ -49,7 +49,7 @@ function LeaveHistory() {
             </div>
 
             <div className="main">
-                <h2 className="page-title">
+                <h2 className="title">
                     Leave History
                 </h2>
                 <table>
