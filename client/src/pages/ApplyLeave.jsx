@@ -20,6 +20,8 @@ function ApplyLeave() {
         return <Navigate to="/login" replace />;
     }
 
+    //get employee
+
     useEffect(() => {
         axios.get("http://localhost:5000/employee/" + email)
             .then((response) => {

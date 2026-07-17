@@ -25,6 +25,7 @@ function AdminDashboard() {
         fetchData();
     }, []);
 
+    //fetch data 
     function fetchData() {
 
         axios.get("http://localhost:5000/admin/stats")

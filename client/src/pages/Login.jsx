@@ -8,10 +8,35 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
+    function validatePhone(phone) {
+        if (!phone.startsWith("+")) {
+            return false;
+        }
+
+        const number = phone.substring(1);
+
+        if (isNaN(number)) {
+            return false;
+        }
+
+        if (number.length < 8 || number.length > 15) {
+            return false;
+        }
+
+        return true;
+    }
     function login() {
         if (emailOrPhone === "") {
             alert("Please enter your email or phone number");
             return;
+        }
+
+        // Validate only if user enters a phone number
+        if (emailOrPhone.startsWith("+")) {
+            if (!validatePhone(emailOrPhone)) {
+                alert("Please enter a valid international phone number");
+                return;
+            }
         }
 
         if (password === "") {
@@ -46,16 +71,36 @@ function Login() {
     return (
         <div className="login-container">
             <h1>Employee Login</h1>
+
             <div className="form-group">
                 <label>Email ID or Phone Number</label>
-                <input id="emailOrPhone" type="text" placeholder="Email ID or Phone Number" value={emailOrPhone} onChange={(e) => setEmailOrPhone(e.target.value)} />
+                <input
+                    id="emailOrPhone"
+                    type="text"
+                    placeholder="Email ID or Phone Number"
+                    value={emailOrPhone}
+                    onChange={(e) => setEmailOrPhone(e.target.value)}
+                />
             </div>
+
             <div className="form-group">
                 <label>Password</label>
-                <input id="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
-            <button className="login-btn" onClick={login}>Login</button>
-            <p>Don't have an account? <a href="/register">Register</a></p>
+
+            <button className="login-btn" onClick={login}>
+                Login
+            </button>
+
+            <p>
+                Don't have an account? <a href="/register">Register</a>
+            </p>
         </div>
     );
 }

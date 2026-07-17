@@ -19,6 +19,7 @@ function MonthlyReport() {
     }
 
     function handleSearch() {
+        // month and year wise leave 
 
         if (!selectedMonth || !selectedYear) {
             alert("Please select both month and year");
@@ -48,7 +49,7 @@ function MonthlyReport() {
 
         const difference = end - start;
 
-        const totalDays = Math.ceil(difference / (1000 * 60 * 60 * 24)) + 1;
+        const totalDays = Math.ceil(difference / (1000 * 60 * 60 * 24)) + 1; // milliseconds to day
 
         return totalDays;
     }

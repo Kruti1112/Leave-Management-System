@@ -20,6 +20,8 @@ function LeaveRequest() {
         getLeaves();
     }, []);
 
+    //get leaves
+
     function getLeaves() {
 
         axios.get("http://localhost:5000/admin/leaves")
@@ -31,6 +33,8 @@ function LeaveRequest() {
             });
 
     }
+
+    //update status rejected or approved 
 
     function updateStatus(id, status) {
 
@@ -63,6 +67,10 @@ function LeaveRequest() {
 
                     <li>
                         Leave Requests
+                    </li>
+
+                    <li onClick={() => navigate("/monthlyreport")}>
+                        Monthly Report
                     </li>
 
                     <li onClick={logout}>

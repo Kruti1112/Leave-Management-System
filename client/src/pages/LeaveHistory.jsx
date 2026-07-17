@@ -16,6 +16,8 @@ function LeaveHistory() {
         return <Navigate to="/login" replace />;
     }
 
+    //get leave history
+
     function getLeaveHistory() {
 
         axios.get("http://localhost:5000/leavehistory/" + email)

@@ -81,13 +81,18 @@ body{
     font-weight:600;
 }
 
-.password-info{
-    font-size:14px;
-    color:#666;
-    margin-top:5px;
+.password-info {
+    display: block;
+    margin-top: 8px;
+    color: #666;
+    font-size: 13px;
 }
 
-.password-info ul{
-    margin:5px 0 0 20px;
-    padding:0;
+.password-info ul {
+    margin: 5px 0 0 18px;
+    padding: 0;
+}
+
+.password-info li {
+    margin-bottom: 3px;
 }

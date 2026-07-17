@@ -10,6 +10,28 @@ function Register() {
     const [photo, setPhoto] = useState(null);
     const [password, setPassword] = useState("");
 
+    function validatePhone(phone) {
+        if (phone === "") {
+            return "Please enter your phone number";
+        }
+
+        if (!phone.startsWith("+")) {
+            return "Phone number must start with '+' followed by country code";
+        }
+
+        const number = phone.substring(1);
+
+        if (isNaN(number)) {
+            return "Phone number must contain only numbers after '+'";
+        }
+
+        if (number.length < 8 || number.length > 15) {
+            return "Phone number must be between 8 and 15 digits";
+        }
+
+        return "";
+    }
+
     function register() {
         if (name === "") {
             alert("Please enter your name");
@@ -36,18 +58,10 @@ function Register() {
             return;
         }
 
-        if (phone === "") {
-            alert("Please enter your phone number");
-            return;
-        }
-
-        if (!/^[0-9]+$/.test(phone)) {
-            alert("Phone number must contain only numbers");
-            return;
-        }
-
-        if (phone.length !== 10) {
-            alert("Phone number must be exactly 10 digits");
+        // Phone validation
+        const phoneError = validatePhone(phone);
+        if (phoneError !== "") {
+            alert(phoneError);
             return;
         }
 
@@ -86,22 +100,24 @@ function Register() {
             alert("Password must contain at least one uppercase letter");
             return;
         }
+
         if (!/[a-z]/.test(password)) {
             alert("Password must contain at least one lowercase letter");
             return;
         }
+
         if (!/[0-9]/.test(password)) {
             alert("Password must contain at least one number");
             return;
         }
 
         const employee = {
-            name: name,
-            email: email,
-            phone: phone,
-            address: address,
+            name,
+            email,
+            phone,
+            address,
             photo: photo.name,
-            password: password
+            password
         };
 
         axios.post("http://localhost:5000/register", employee)
@@ -114,6 +130,7 @@ function Register() {
                     setAddress("");
                     setPhoto(null);
                     setPassword("");
+
                     const photoInput = document.getElementById("photo");
                     if (photoInput) {
                         photoInput.value = "";
@@ -196,15 +213,16 @@ function Register() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="password-info">
-                    <strong>Password must contain:</strong>
+
+                <small className="password-info">
+                    Password must:
                     <ul>
-                        <li>Minimum 8 characters</li>
-                        <li>One uppercase letter</li>
-                        <li>One lowercase letter</li>
-                        <li>One number</li>
+                        <li>Be at least 8 characters long</li>
+                        <li>Contain at least one uppercase letter (A-Z)</li>
+                        <li>Contain at least one lowercase letter (a-z)</li>
+                        <li>Contain at least one number (0-9)</li>
                     </ul>
-                </div>
+                </small>
             </div>
 
             <button className="register-btn" onClick={register}>
