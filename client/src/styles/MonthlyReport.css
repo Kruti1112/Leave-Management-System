@@ -1,0 +1,142 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+.sidebar{
+    width:220px;
+    background:#2c3e50;
+    color:white;
+    padding:20px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    padding:15px;
+    cursor:pointer;
+    margin-bottom:10px;
+}
+
+.sidebar li:hover{
+    background:#1f2d3d;
+}
+
+.main{
+    flex:1;
+    padding:30px;
+    background:#f4f6f9;
+}
+
+.title{
+    margin-bottom:20px;
+    color:#2c3e50;
+    font-size:30px;
+}
+
+
+.filter-section{
+    display:flex;
+    gap:20px;
+    align-items:flex-end;
+    margin-bottom:30px;
+    background:white;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0.5px 1.5px 5px rgba(57, 57, 57, 0.25);
+}
+
+.filter-group{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.filter-group label{
+    font-weight:bold;
+    color:#2c3e50;
+    font-size:14px;
+}
+
+.filter-group select{
+    padding:10px;
+    border:1px solid #ddd;
+    border-radius:4px;
+    font-size:14px;
+    min-width:150px;
+    cursor:pointer;
+}
+
+.filter-group select:focus{
+    outline:none;
+    border-color:#43637E;
+}
+
+.search-button{
+    padding:10px 25px;
+    background:#43637E;
+    color:white;
+    border:none;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    transition:background 0.3s;
+}
+
+.search-button:hover{
+    background:#2c3e50;
+}
+
+.report-table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    box-shadow:0.5px 1.5px 5px rgba(57, 57, 57, 0.25);
+}
+
+.report-table th{
+    background:#43637E;
+    color:white;
+    padding:16px 18px;
+    text-align:center;
+    font-size:0.95rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.8px;
+}
+
+.report-table td{
+    padding:16px 18px;
+    border:1px solid #ddd;
+    text-align:center;
+    color:#475569;
+    border-bottom:1px solid #edf2f7;
+}
+
+.report-table tbody tr:hover{
+    background:#f2f8f7;
+}
+.no-records{
+    text-align:center;
+    padding:40px;
+    color:#6b7280;
+    font-size:18px;
+    background:white;
+    border-radius:8px;
+    box-shadow:0.5px 1.5px 5px rgba(57, 57, 57, 0.25);
+}

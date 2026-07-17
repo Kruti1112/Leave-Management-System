@@ -7,6 +7,7 @@ import LeaveHistory from "./pages/LeaveHistory";
 import AdminLogin from "./pages/Adminlogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import LeaveRequest from "./pages/LeaveRequest";
+import MonthlyReport from "./pages/MonthlyReport";
 
 function App() {
   return (
@@ -103,6 +104,7 @@ function App() {
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/leaverequests" element={<LeaveRequest />} />
+        <Route path="/monthlyreport" element={<MonthlyReport />} />
 
         
       </Routes>

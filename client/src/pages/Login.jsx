@@ -4,19 +4,13 @@ import axios from "axios";
 import "../styles/Login.css";
 
 function Login() {
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
+    const [emailOrPhone, setEmailOrPhone] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
     function login() {
-        if (email === "") {
-            alert("Please enter your email");
-            return;
-        }
-
-        if (phone === "") {
-            alert("Please enter your phone number");
+        if (emailOrPhone === "") {
+            alert("Please enter your email or phone number");
             return;
         }
 
@@ -31,17 +25,16 @@ function Login() {
         }
 
         axios.post("http://localhost:5000/login", {
-            email: email,
-            phone: phone,
+            emailOrPhone: emailOrPhone,
             password: password,
         })
         .then((response) => {
             if (response.data.success) {
-                sessionStorage.setItem("email", email);
+                sessionStorage.setItem("email", response.data.employee.email);
                 alert(response.data.message || "Login Successful");
                 navigate("/dashboard");
             } else {
-                alert(response.data.message || "Invalid Email, Phone number or Password");
+                alert(response.data.message || "Invalid Email/Phone Number or Password");
             }
         })
         .catch((error) => {
@@ -54,18 +47,14 @@ function Login() {
         <div className="login-container">
             <h1>Employee Login</h1>
             <div className="form-group">
-                <label>Email ID</label>
-                <input id="email" type="email" placeholder="Email ID" value={email} onChange={(e) => setEmail(e.target.value)} />
-            </div>
-            <div className="form-group">
-                <label>Phone Number</label>
-                <input id="phone" type="tel" placeholder="Phone Number" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                <label>Email ID or Phone Number</label>
+                <input id="emailOrPhone" type="text" placeholder="Email ID or Phone Number" value={emailOrPhone} onChange={(e) => setEmailOrPhone(e.target.value)} />
             </div>
             <div className="form-group">
                 <label>Password</label>
                 <input id="password" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </div>
-            <button onClick={login}>Login</button>
+            <button className="login-btn" onClick={login}>Login</button>
             <p>Don't have an account? <a href="/register">Register</a></p>
         </div>
     );

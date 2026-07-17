@@ -68,7 +68,7 @@ function AdminLogin() {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
-            <button onClick={adminLogin}>
+            <button className="adminlogin-btn" onClick={adminLogin}>
                 Login
             </button>
         </div>

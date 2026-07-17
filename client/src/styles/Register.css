@@ -51,7 +51,7 @@ body{
     border-color:#43637E;
 }
 
-button{
+.register-btn{
     width:100%;
     padding:10px;
     background:#43637E;
@@ -64,7 +64,7 @@ button{
     font-weight:600;
 }
 
-button:hover{
+.register-btn:hover{
     background:#39546B;
 }
 
@@ -79,4 +79,15 @@ button:hover{
     color:#43637E;
     text-decoration:none;
     font-weight:600;
+}
+
+.password-info{
+    font-size:14px;
+    color:#666;
+    margin-top:5px;
+}
+
+.password-info ul{
+    margin:5px 0 0 20px;
+    padding:0;
 }

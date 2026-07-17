@@ -39,6 +39,24 @@ function ApplyLeave() {
             alert("Please Enter Reason");
             return;
         }
+
+        const today = new Date();
+        const selectedFromDate = new Date(fromDate);
+        const daysDifference = selectedFromDate.getDate() - today.getDate();
+        if (leaveType === "Casual Leave" && daysDifference < 2) {
+            alert("Casual Leave must be applied at least 2 days before.");
+            return;
+        }
+
+        if (leaveType === "Privilege Leave" && daysDifference < 7) {
+            alert("Privilege Leave must be applied at least 7 days before.");
+            return;
+        }
+
+        if (leaveType === "Sick Leave") {
+            alert("Sick Leave can be applied immediately.");
+        }
+
         axios.post("http://localhost:5000/applyleave", {
 
             employeeId: employee._id,
@@ -122,7 +140,7 @@ function ApplyLeave() {
                     />
                     <label>Reason</label>
                     <textarea
-                        rows="3"
+                        rows="2"
                         value={reason}
                         placeholder="Enter Your Reason"
                         onChange={(e) => setReason(e.target.value)}

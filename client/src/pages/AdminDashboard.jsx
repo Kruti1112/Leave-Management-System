@@ -12,7 +12,6 @@ function AdminDashboard() {
         approvedLeaves: 0
     });
 
-    const [leaves, setLeaves] = useState([]);
     const navigate = useNavigate();
     useEffect(() => {
         if (sessionStorage.getItem("isAdminLoggedIn") !== "true") {
@@ -25,25 +24,6 @@ function AdminDashboard() {
         axios.get("http://localhost:5000/admin/stats")
         .then((response) => {
             setStats(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-        axios.get("http://localhost:5000/admin/leaves")
-        .then((response) => {
-            setLeaves(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
-    function updateStatus(id, status) {
-        axios.put("http://localhost:5000/admin/leaves/" + id, {
-            status: status
-        })
-        .then((response) => {
-            alert(response.data.message);
-            fetchData();
         })
         .catch((error) => {
             console.log(error);
@@ -68,6 +48,10 @@ function AdminDashboard() {
 
                     <li onClick={() => window.location="/leaverequests"}>
                         Leave Requests
+                    </li>
+
+                    <li onClick={() => window.location="/monthlyreport"}>
+                        Monthly Report
                     </li>
 
                     <li onClick={logout}>
@@ -117,7 +101,8 @@ function AdminDashboard() {
                         </p>
                     </div>
                 </div>
-                <button onClick={() => (window.location = "/leaverequests")}>
+
+                 <button onClick={() => (window.location = "/leaverequests")}>
                     See Leave Requests
                 </button>
             </div>

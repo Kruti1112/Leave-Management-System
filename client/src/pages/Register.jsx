@@ -3,7 +3,6 @@ import "../styles/Register.css";
 import axios from "axios";
 
 function Register() {
-
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -12,9 +11,18 @@ function Register() {
     const [password, setPassword] = useState("");
 
     function register() {
-
         if (name === "") {
             alert("Please enter your name");
+            return;
+        }
+
+        if (name.length > 50) {
+            alert("Name must be maximum 50 characters");
+            return;
+        }
+
+        if (!/^[A-Za-z ]+$/.test(name)) {
+            alert("Name must contain only alphabets and spaces");
             return;
         }
 
@@ -23,8 +31,23 @@ function Register() {
             return;
         }
 
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert("Please enter a valid email");
+            return;
+        }
+
         if (phone === "") {
             alert("Please enter your phone number");
+            return;
+        }
+
+        if (!/^[0-9]+$/.test(phone)) {
+            alert("Phone number must contain only numbers");
+            return;
+        }
+
+        if (phone.length !== 10) {
+            alert("Phone number must be exactly 10 digits");
             return;
         }
 
@@ -35,6 +58,17 @@ function Register() {
 
         if (photo === null) {
             alert("Please upload your photo");
+            return;
+        }
+
+        const allowedTypes = ["image/jpeg", "image/jpg", "image/png"];
+        if (!allowedTypes.includes(photo.type)) {
+            alert("Photo must be JPG, JPEG or PNG format");
+            return;
+        }
+
+        if (photo.size > 2 * 1024 * 1024) {
+            alert("Photo size must be maximum 2 MB");
             return;
         }
 
@@ -70,62 +104,51 @@ function Register() {
             password: password
         };
 
-        axios.post(
-            "http://localhost:5000/register",
-            employee
-        )
-        .then((response) => {
-
-            alert("Successfully Registered...");
-
-            console.log(response.data);
-
-            setName("");
-            setEmail("");
-            setPhone("");
-            setAddress("");
-            setPhoto(null);
-            setPassword("");
-
-            const photo = document.getElementById("photo");
-
-            if (photo) {
-                photo.value = "";
-            }
-
-        })
-        .catch((error) => {
-
-            console.log(error);
-
-            alert("Registration Failed");
-
-        });
-
+        axios.post("http://localhost:5000/register", employee)
+            .then((response) => {
+                if (response.data.success) {
+                    alert(response.data.message);
+                    setName("");
+                    setEmail("");
+                    setPhone("");
+                    setAddress("");
+                    setPhoto(null);
+                    setPassword("");
+                    const photoInput = document.getElementById("photo");
+                    if (photoInput) {
+                        photoInput.value = "";
+                    }
+                } else {
+                    alert(response.data.message);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                alert("Registration Failed");
+            });
     }
 
-
-    return(
+    return (
         <div className="register-container">
-
             <h1>Employee Registration</h1>
 
             <div className="form-group">
                 <label>Name</label>
-                <input 
+                <input
                     id="name"
                     type="text"
                     placeholder="Full Name"
                     value={name}
+                    maxLength={50}
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
 
             <div className="form-group">
                 <label>Email ID</label>
-                <input 
+                <input
                     id="email"
-                    type="email"
+                    type="text"
                     placeholder="Email ID"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -134,9 +157,9 @@ function Register() {
 
             <div className="form-group">
                 <label>Phone Number</label>
-                <input 
+                <input
                     id="phone"
-                    type="tel"
+                    type="text"
                     placeholder="Phone Number"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
@@ -145,18 +168,19 @@ function Register() {
 
             <div className="form-group">
                 <label>Address</label>
-                <input 
+                <input
                     id="address"
                     type="text"
                     placeholder="Address"
                     value={address}
+                    maxLength={150}
                     onChange={(e) => setAddress(e.target.value)}
                 />
             </div>
 
             <div className="form-group">
                 <label>Upload Your Photo Here</label>
-                <input 
+                <input
                     id="photo"
                     type="file"
                     onChange={(e) => setPhoto(e.target.files[0])}
@@ -165,24 +189,32 @@ function Register() {
 
             <div className="form-group">
                 <label>Password</label>
-                <input 
+                <input
                     id="password"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="password-info">
+                    <strong>Password must contain:</strong>
+                    <ul>
+                        <li>Minimum 8 characters</li>
+                        <li>One uppercase letter</li>
+                        <li>One lowercase letter</li>
+                        <li>One number</li>
+                    </ul>
+                </div>
             </div>
 
-            <button onClick={register}>
+            <button className="register-btn" onClick={register}>
                 Register
             </button>
 
             <p>
-                Already have an account? 
+                Already have an account?
                 <a href="/login"> Login</a>
             </p>
-
         </div>
     );
 }

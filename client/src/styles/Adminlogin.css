@@ -49,7 +49,7 @@ body{
     border:2px solid #43637E;
 }
 
-button{
+.adminlogin-btn{
     width:100%;
     padding:12px;
     background:#43637E;
@@ -58,10 +58,9 @@ button{
     border-radius:5px;
     font-size:16px;
     cursor:pointer;
-    transition:0.3s;
 }
 
-button:hover{
+.adminlogin-btn:hover{
     background:#39546B;
 }
 
@@ -75,8 +74,4 @@ button:hover{
     color:#43637E;
     text-decoration:none;
     font-weight:bold;
-}
-
-.adminlogin-container a:hover{
-    text-decoration:underline;
 }

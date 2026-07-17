@@ -52,7 +52,7 @@ body{
     border-color:#43637E;
 }
 
-button{
+.login-btn{
     width:100%;
     padding:10px;
     background:#43637E;
@@ -65,7 +65,7 @@ button{
     font-weight:600;
 }
 
-button:hover{
+.login-btn:hover{
     background:#39546B;
 }
 
