@@ -113,7 +113,7 @@ function MonthlyReport() {
                     </button>
                 </div>
 
-                {/* Results Table */}
+                {/* leave Table */}
                 {leaves.length > 0 ? (
                     <table className="report-table">
                         <thead>
