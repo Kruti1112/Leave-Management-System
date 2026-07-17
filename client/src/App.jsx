@@ -104,9 +104,7 @@ function App() {
         <Route path="/adminlogin" element={<AdminLogin />} />
         <Route path="/admindashboard" element={<AdminDashboard />} />
         <Route path="/leaverequests" element={<LeaveRequest />} />
-        <Route path="/monthlyreport" element={<MonthlyReport />} />
-
-        
+        <Route path="/monthlyreport" element={<MonthlyReport />} />        
       </Routes>
     </BrowserRouter>
   );
