@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/LeaveHistory.css";
 
@@ -6,7 +7,14 @@ function LeaveHistory() {
 
     const [leaves, setLeaves] = useState([]);
 
+    const navigate = useNavigate();
+
     const email = sessionStorage.getItem("email");
+
+    // navigate to login
+    if (!email) {
+        return <Navigate to="/login" replace />;
+    }
 
     function getLeaveHistory() {
 
@@ -17,6 +25,7 @@ function LeaveHistory() {
             .catch((error) => {
                 console.log(error);
             });
+
     }
 
     useEffect(() => {
@@ -25,16 +34,21 @@ function LeaveHistory() {
 
     }, []);
 
+    function logout() {
+        sessionStorage.removeItem("email");
+        navigate("/login");
+    }
+
     return (
         <div className="dashboard">
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li onClick={() => (window.location = "/dashboard")}>
+                    <li onClick={() => navigate("/dashboard")}>
                         Dashboard
                     </li>
 
-                    <li onClick={() => (window.location = "/applyleave")}>
+                    <li onClick={() => navigate("/applyleave")}>
                         Apply Leave
                     </li>
 
@@ -42,12 +56,11 @@ function LeaveHistory() {
                         Leave History
                     </li>
 
-                    <li onClick={() => (window.location = "/login")}>
+                    <li onClick={logout}>
                         Logout
                     </li>
                 </ul>
             </div>
-
             <div className="main">
                 <h2 className="title">
                     Leave History

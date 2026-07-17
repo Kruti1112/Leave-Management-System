@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/MonthlyReport.css";
 
@@ -8,11 +9,22 @@ function MonthlyReport() {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
 
+    const navigate = useNavigate();
+
+    const isAdminLoggedIn = sessionStorage.getItem("isAdminLoggedIn");
+
+    // navigate to admin login
+    if (isAdminLoggedIn !== "true") {
+        return <Navigate to="/adminlogin" replace />;
+    }
+
     function handleSearch() {
+
         if (!selectedMonth || !selectedYear) {
             alert("Please select both month and year");
             return;
         }
+
         axios.get("http://localhost:5000/admin/monthlyreport/filter", {
             params: {
                 month: selectedMonth,
@@ -26,17 +38,24 @@ function MonthlyReport() {
                 console.log(error);
                 alert("Error fetching data");
             });
+
     }
 
     function calculateTotalDays(fromDate, toDate) {
+
         const start = new Date(fromDate);
         const end = new Date(toDate);
-        
+
         const difference = end - start;
-        
+
         const totalDays = Math.ceil(difference / (1000 * 60 * 60 * 24)) + 1;
-        
+
         return totalDays;
+    }
+
+    function logout() {
+        sessionStorage.removeItem("isAdminLoggedIn");
+        navigate("/adminlogin");
     }
 
     return (
@@ -44,11 +63,11 @@ function MonthlyReport() {
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li onClick={() => (window.location = "/admindashboard")}>
+                    <li onClick={() => navigate("/admindashboard")}>
                         Dashboard
                     </li>
 
-                    <li onClick={() => (window.location = "/leaverequests")}>
+                    <li onClick={() => navigate("/leaverequests")}>
                         Leave Requests
                     </li>
 
@@ -56,13 +75,14 @@ function MonthlyReport() {
                         Monthly Report
                     </li>
 
-                    <li onClick={() => (window.location = "/adminlogin")}>
+                    <li onClick={logout}>
                         Logout
                     </li>
                 </ul>
             </div>
 
             <div className="main">
+
                 <h2 className="title">
                     Monthly Leave Report
                 </h2>
@@ -70,8 +90,8 @@ function MonthlyReport() {
                 <div className="filter-section">
                     <div className="filter-group">
                         <label>Select Month:</label>
-                        <select 
-                            value={selectedMonth} 
+                        <select
+                            value={selectedMonth}
                             onChange={(e) => setSelectedMonth(e.target.value)}
                         >
                             <option value="">-- Select Month --</option>
@@ -88,13 +108,13 @@ function MonthlyReport() {
                             <option value="11">November</option>
                             <option value="12">December</option>
                         </select>
+
                     </div>
 
-                    {/* Year Dropdown */}
                     <div className="filter-group">
                         <label>Select Year:</label>
-                        <select 
-                            value={selectedYear} 
+                        <select
+                            value={selectedYear}
                             onChange={(e) => setSelectedYear(e.target.value)}
                         >
                             <option value="">-- Select Year --</option>
@@ -106,16 +126,19 @@ function MonthlyReport() {
                             <option value="2030">2030</option>
                         </select>
                     </div>
-
-                    {/* Search Button */}
-                    <button className="search-button" onClick={handleSearch}>
+                    <button
+                        className="search-button"
+                        onClick={handleSearch}
+                    >
                         Search
                     </button>
+
                 </div>
 
-                {/* leave Table */}
                 {leaves.length > 0 ? (
+
                     <table className="report-table">
+
                         <thead>
                             <tr>
                                 <th>Employee Name</th>
@@ -126,7 +149,9 @@ function MonthlyReport() {
                                 <th>Status</th>
                             </tr>
                         </thead>
+
                         <tbody>
+
                             {leaves.map((leave) => (
                                 <tr key={leave._id}>
                                     <td>{leave.employeeName}</td>
@@ -137,12 +162,21 @@ function MonthlyReport() {
                                     <td>{leave.status}</td>
                                 </tr>
                             ))}
+
                         </tbody>
+
                     </table>
+
                 ) : (
-                    <p className="no-records">No leave records found.</p>
+
+                    <p className="no-records">
+                        No leave records found.
+                    </p>
+
                 )}
+
             </div>
+
         </div>
     );
 }

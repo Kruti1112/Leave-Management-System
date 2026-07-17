@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/LeaveRequest.css";
 
 function LeaveRequest() {
 
     const [leaves, setLeaves] = useState([]);
+
+    const navigate = useNavigate();
+
+    const isAdminLoggedIn = sessionStorage.getItem("isAdminLoggedIn");
+
+    // navigate to admin login
+    if (isAdminLoggedIn !== "true") {
+        return <Navigate to="/adminlogin" replace />;
+    }
 
     useEffect(() => {
         getLeaves();
@@ -13,26 +23,33 @@ function LeaveRequest() {
     function getLeaves() {
 
         axios.get("http://localhost:5000/admin/leaves")
-        .then((response) => {
-            setLeaves(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                setLeaves(response.data);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
     }
 
     function updateStatus(id, status) {
+
         axios.put("http://localhost:5000/admin/leaves/" + id, {
             status: status
         })
-        .then((response) => {
-            alert(response.data.message);
-            getLeaves();
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((response) => {
+                alert(response.data.message);
+                getLeaves();
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+    }
+
+    function logout() {
+        sessionStorage.removeItem("isAdminLoggedIn");
+        navigate("/adminlogin");
     }
 
     return (
@@ -40,7 +57,7 @@ function LeaveRequest() {
             <div className="sidebar">
                 <h2>Leave Management System</h2>
                 <ul>
-                    <li onClick={() => window.location="/admindashboard"}>
+                    <li onClick={() => navigate("/admindashboard")}>
                         Dashboard
                     </li>
 
@@ -48,12 +65,11 @@ function LeaveRequest() {
                         Leave Requests
                     </li>
 
-                    <li onClick={() => window.location="/adminlogin"}>
+                    <li onClick={logout}>
                         Logout
                     </li>
                 </ul>
             </div>
-
             <div className="main">
                 <h1>Leave Requests</h1>
                 <table>
@@ -80,24 +96,24 @@ function LeaveRequest() {
                                 <td>{leave.reason}</td>
                                 <td>{leave.status}</td>
                                 <td>
-                                    {
-                                    leave.status === "Pending" ? (
-                                    <>
-                                    <button
-                                    className="approve"
-                                    onClick={() => updateStatus(leave._id, "Approved")}
-                                    >
-                                        Approve
-                                    </button>
-                                    <button
-                                    className="reject"
-                                    onClick={() => updateStatus(leave._id, "Rejected")}
-                                    >
-                                        Reject
-                                    </button>
-                                    </>
-                                ) : null
-                                }
+                                    {leave.status === "Pending" ? (
+                                        <>
+                                            <button
+                                                className="approve"
+                                                onClick={() => updateStatus(leave._id, "Approved")}
+                                            >
+                                                Approve
+                                            </button>
+
+                                            <button
+                                                className="reject"
+                                                onClick={() => updateStatus(leave._id, "Rejected")}
+                                            >
+                                                Reject
+                                            </button>
+                                        </>
+                                    ) : null}
+
                                 </td>
                             </tr>
                         ))}
