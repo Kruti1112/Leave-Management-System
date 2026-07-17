@@ -299,8 +299,7 @@ app.get("/admin/monthlyreport/filter", (req, res) => {
     const selectedYear = req.query.year;  
 
     Leave.find()
-        .then((allLeaves) => {
-            
+        .then((allLeaves) => {            
             const filteredLeaves = allLeaves.filter(function(leave) {
                 const leaveDate = new Date(leave.fromDate);
 
