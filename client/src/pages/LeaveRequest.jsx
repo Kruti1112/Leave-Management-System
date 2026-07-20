@@ -59,27 +59,33 @@ function LeaveRequest() {
     return (
         <div className="dashboard">
             <div className="sidebar">
-                <h2>Leave Management System</h2>
+                <div className="sidebar-header">
+                    <div className="brand-mark">LM</div>
+                    <h2>Leave<br />Management</h2>
+                </div>
                 <ul>
                     <li onClick={() => navigate("/admindashboard")}>
-                        Dashboard
+                        <span className="nav-icon">◉</span>Dashboard
                     </li>
 
-                    <li>
-                        Leave Requests
+                    <li className="active">
+                        <span className="nav-icon">✦</span>Leave Requests
                     </li>
 
                     <li onClick={() => navigate("/monthlyreport")}>
-                        Monthly Report
+                        <span className="nav-icon">▤</span>Monthly Report
                     </li>
 
                     <li onClick={logout}>
-                        Logout
+                        <span className="nav-icon">⇢</span>Logout
                     </li>
                 </ul>
             </div>
             <div className="main">
-                <h1>Leave Requests</h1>
+                <div className="page-title-row">
+                    <div className="page-icon">✦</div>
+                    <h1>Leave Requests</h1>
+                </div>
                 <table>
                     <thead>
                         <tr>

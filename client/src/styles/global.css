@@ -1,0 +1,345 @@
+:root{
+  --primary:#6C63FF;
+  --primary-hover:#7C3AED;
+  --secondary:#8B5CF6;
+  --secondary-hover:#9333EA;
+  --accent:#14B8A6;
+  --sidebar-bg:rgba(20,22,45,0.9);
+  --sidebar-color:#14162D;
+  --text:#1F2937;
+  --text-light:#6B7280;
+  --card:rgba(255,255,255,0.25);
+  --card-hover:rgba(255,255,255,0.35);
+  --border:rgba(255,255,255,0.3);
+  --border-light:rgba(255,255,255,0.4);
+  --shadow:0 12px 35px rgba(99,102,241,0.12);
+  --button-shadow:0 8px 20px rgba(124,58,237,0.35);
+  --button-hover-shadow:0 10px 25px rgba(124,58,237,0.45);
+  --gradient:linear-gradient(135deg,#6C63FF,#8B5CF6);
+  --gradient-hover:linear-gradient(135deg,#7C3AED,#9333EA);
+  --bg:linear-gradient(135deg,#EEF2FF 0%,#E9D5FF 50%,#F8FAFC 100%);
+  --success:#10B981;
+  --success-gradient:linear-gradient(135deg,#10B981,#059669);
+  --pending:#F59E0B;
+  --pending-gradient:linear-gradient(135deg,#F59E0B,#D97706);
+  --rejected:#EF4444;
+  --rejected-gradient:linear-gradient(135deg,#EF4444,#DC2626);
+  --purple:#7C3AED;
+  --purple-gradient:linear-gradient(135deg,#7C3AED,#8B5CF6);
+  --green:#10B981;
+  --orange:#F59E0B;
+  --red:#EF4444;
+}
+
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter, Poppins, sans-serif;
+}
+
+body {
+  background:var(--bg);
+  min-height:100vh;
+  color:var(--text);
+}
+
+.dashboard,
+.auth-shell {
+  min-height:100vh;
+  background:var(--bg);
+}
+
+.sidebar {
+  background:var(--sidebar-bg);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border-right:1px solid rgba(255,255,255,0.1);
+  color:white;
+}
+
+.sidebar ul li.active,
+.sidebar-menu li.active {
+  background:linear-gradient(135deg,#6C63FF,#8B5CF6);
+  color:white;
+  box-shadow:0 12px 24px rgba(108,99,255,0.25);
+}
+
+.sidebar ul li:hover,
+.sidebar-menu li:hover {
+  background:rgba(255,255,255,0.12);
+}
+
+.sidebar .nav-icon,
+.sidebar .icon {
+  background:rgba(255,122,89,0.18);
+  color:#FFB08F;
+}
+
+.page-hero,
+.welcome-card,
+.card,
+.insight-card,
+.leave-box,
+.team-card,
+.ai-panel,
+.filter-section,
+.report-table,
+.no-records,
+.auth-card {
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-hero:hover,
+.welcome-card:hover,
+.card:hover,
+.insight-card:hover,
+.leave-box:hover,
+.team-card:hover,
+.ai-panel:hover,
+.filter-section:hover {
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(99,102,241,0.18);
+}
+
+.primary-btn,
+.auth-btn,
+button {
+  background:var(--gradient);
+  color:white;
+  border:none;
+  border-radius:14px;
+  padding:14px 28px;
+  font-weight:600;
+  transition:transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor:pointer;
+  box-shadow:var(--button-shadow);
+}
+
+.primary-btn:hover,
+.auth-btn:hover,
+button:hover {
+  transform:translateY(-3px);
+  background:var(--gradient-hover);
+  box-shadow:var(--button-hover-shadow);
+}
+
+.eyebrow,
+.page-title-row .title,
+.page-hero-copy h3,
+.page-hero-copy p,
+.welcome-details p,
+.card h3,
+.stat-card h3,
+.meta-text,
+.mini-note,
+.team-role,
+.team-days,
+.auth-link,
+.password-info,
+.form-group label,
+.main .leave-box label,
+.filter-group label {
+  color:var(--text-light);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-size:13px;
+}
+
+.page-title-row .title,
+.page-hero-copy h3,
+.welcome-details h2,
+.main .leave-box h1,
+.title,
+.auth-brand h1,
+.auth-brand .eyebrow {
+  color:var(--text);
+  letter-spacing:normal;
+  text-transform:none;
+  font-size:28px;
+  font-weight:700;
+}
+
+/* Input Styling */
+input,
+select,
+textarea {
+  height:50px;
+  border-radius:12px;
+  border:1px solid var(--border-light);
+  background:rgba(255,255,255,0.35);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  padding:0 16px;
+  font-size:15px;
+  color:var(--text);
+  transition:all 0.3s ease;
+  outline:none;
+  box-shadow:0 4px 12px rgba(99,102,241,0.08);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color:var(--primary);
+  box-shadow:0 4px 16px rgba(124,58,237,0.2);
+  background:rgba(255,255,255,0.45);
+}
+
+textarea {
+  height:140px;
+  resize:none;
+  padding:12px 16px;
+  line-height:1.6;
+}
+
+/* Table Styling */
+table {
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0 8px;
+  background:transparent;
+}
+
+thead {
+  background:var(--gradient);
+  border-radius:12px;
+}
+
+thead tr {
+  border-radius:12px;
+}
+
+thead th {
+  color:white;
+  padding:16px;
+  text-align:left;
+  font-weight:600;
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+thead th:first-child {
+  border-radius:12px 0 0 12px;
+}
+
+thead th:last-child {
+  border-radius:0 12px 12px 0;
+}
+
+tbody tr {
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid var(--border);
+  border-radius:12px;
+  transition:all 0.3s ease;
+}
+
+tbody tr:hover {
+  background:var(--card-hover);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(99,102,241,0.12);
+}
+
+tbody td {
+  padding:16px;
+  color:var(--text);
+  font-size:15px;
+}
+
+tbody td:first-child {
+  border-radius:12px 0 0 12px;
+}
+
+tbody td:last-child {
+  border-radius:0 12px 12px 0;
+}
+
+/* Status Badges */
+.status-badge {
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+}
+
+.status-badge.approved {
+  background:var(--success-gradient);
+  color:white;
+}
+
+.status-badge.pending {
+  background:var(--pending-gradient);
+  color:white;
+}
+
+.status-badge.rejected {
+  background:var(--rejected-gradient);
+  color:white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow:0 12px 35px rgba(99,102,241,0.12);
+  }
+  50% {
+    box-shadow:0 12px 35px rgba(124,58,237,0.25);
+  }
+}
+
+@keyframes iconRotate {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+
+.fade-in {
+  animation:fadeIn 0.3s ease;
+}
+
+.slide-up {
+  animation:slideUp 0.3s ease;
+}
+
+.glow {
+  animation:glow 2s ease-in-out infinite;
+}
+
+.icon-rotate:hover {
+  animation:iconRotate 0.5s ease;
+}

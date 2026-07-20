@@ -44,29 +44,33 @@ function LeaveHistory() {
     return (
         <div className="dashboard">
             <div className="sidebar">
-                <h2>Leave Management System</h2>
+                <div className="sidebar-header">
+                    <div className="brand-mark">LM</div>
+                    <h2>Leave<br />Management</h2>
+                </div>
                 <ul>
                     <li onClick={() => navigate("/dashboard")}>
-                        Dashboard
+                        <span className="nav-icon">◉</span>Dashboard
                     </li>
 
                     <li onClick={() => navigate("/applyleave")}>
-                        Apply Leave
+                        <span className="nav-icon">✦</span>Apply Leave
                     </li>
 
-                    <li>
-                        Leave History
+                    <li className="active">
+                        <span className="nav-icon">▤</span>Leave History
                     </li>
 
                     <li onClick={logout}>
-                        Logout
+                        <span className="nav-icon">⇢</span>Logout
                     </li>
                 </ul>
             </div>
             <div className="main">
-                <h2 className="title">
-                    Leave History
-                </h2>
+                <div className="page-title-row">
+                    <div className="page-icon">▤</div>
+                    <h2 className="title">Leave History</h2>
+                </div>
                 <table>
                     <thead>
                         <tr>

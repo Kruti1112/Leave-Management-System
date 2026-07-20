@@ -25,13 +25,13 @@ function Login() {
 
         return true;
     }
+
     function login() {
         if (emailOrPhone === "") {
             alert("Please enter your email or phone number");
             return;
         }
 
-        // Validate only if user enters a phone number
         if (emailOrPhone.startsWith("+")) {
             if (!validatePhone(emailOrPhone)) {
                 alert("Please enter a valid international phone number");
@@ -53,54 +53,62 @@ function Login() {
             emailOrPhone: emailOrPhone,
             password: password,
         })
-        .then((response) => {
-            if (response.data.success) {
-                sessionStorage.setItem("email", response.data.employee.email);
-                alert(response.data.message || "Login Successful");
-                navigate("/dashboard");
-            } else {
-                alert(response.data.message || "Invalid Email/Phone Number or Password");
-            }
-        })
-        .catch((error) => {
-            console.error(error);
-            alert("Login Failed");
-        });
+            .then((response) => {
+                if (response.data.success) {
+                    sessionStorage.setItem("email", response.data.employee.email);
+                    alert(response.data.message || "Login Successful");
+                    navigate("/dashboard");
+                } else {
+                    alert(response.data.message || "Invalid Email/Phone Number or Password");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert("Login Failed");
+            });
     }
 
     return (
-        <div className="login-container">
-            <h1>Employee Login</h1>
+        <div className="auth-shell">
+            <div className="auth-card">
+                <div className="auth-brand">
+                    <div className="brand-mark">LM</div>
+                    <div>
+                        <p className="eyebrow">Leave Management</p>
+                        <h1>Employee Login</h1>
+                    </div>
+                </div>
 
-            <div className="form-group">
-                <label>Email ID or Phone Number</label>
-                <input
-                    id="emailOrPhone"
-                    type="text"
-                    placeholder="Email ID or Phone Number"
-                    value={emailOrPhone}
-                    onChange={(e) => setEmailOrPhone(e.target.value)}
-                />
+                <div className="form-group">
+                    <label>Email ID or Phone Number</label>
+                    <input
+                        id="emailOrPhone"
+                        type="text"
+                        placeholder="Email ID or Phone Number"
+                        value={emailOrPhone}
+                        onChange={(e) => setEmailOrPhone(e.target.value)}
+                    />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input
+                        id="password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+
+                <button className="auth-btn" onClick={login}>
+                    Login
+                </button>
+
+                <p className="auth-link">
+                    Don&apos;t have an account? <a href="/register">Register</a>
+                </p>
             </div>
-
-            <div className="form-group">
-                <label>Password</label>
-                <input
-                    id="password"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-            </div>
-
-            <button className="login-btn" onClick={login}>
-                Login
-            </button>
-
-            <p>
-                Don't have an account? <a href="/register">Register</a>
-            </p>
         </div>
     );
 }

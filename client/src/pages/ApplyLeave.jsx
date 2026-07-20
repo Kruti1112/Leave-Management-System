@@ -106,23 +106,26 @@ function ApplyLeave() {
         <div className="dashboard">
 
             <div className="sidebar">
-                <h2>Leave Management System</h2>
+                <div className="sidebar-header">
+                    <div className="brand-mark">LM</div>
+                    <h2>Leave<br />Management</h2>
+                </div>
 
                 <ul>
                     <li onClick={() => navigate("/dashboard")}>
-                        Dashboard
+                        <span className="nav-icon">◉</span>Dashboard
                     </li>
 
-                    <li>
-                        Apply Leave
+                    <li className="active">
+                        <span className="nav-icon">✦</span>Apply Leave
                     </li>
 
                     <li onClick={() => navigate("/leavehistory")}>
-                        Leave History
+                        <span className="nav-icon">▤</span>Leave History
                     </li>
 
                     <li onClick={logout}>
-                        Logout
+                        <span className="nav-icon">⇢</span>Logout
                     </li>
                 </ul>
             </div>
@@ -131,7 +134,10 @@ function ApplyLeave() {
 
                 <div className="leave-box">
 
-                    <h1>Apply Leave</h1>
+                    <div className="page-title-row">
+                        <div className="page-icon">✦</div>
+                        <h1>Apply Leave</h1>
+                    </div>
 
                     <label>Employee Name</label>
                     <input
